@@ -80,16 +80,16 @@ function divMove(e, div) {
 
 
 $(document).ready(function(){
-    var ciao = false;
+    var about = false;
     $("#bio").click(function(){
              
-                    if(ciao == false){
+                    if(about == false){
                         $(".content").addClass("content-none");
-                        ciao = true;
+                        about = true;
                     }
                     else{
                         $(".content").removeClass("content-none");
-                        ciao = false;
+                        about = false;
                     }
                     
                     
@@ -97,16 +97,16 @@ $(document).ready(function(){
     
     
     
-    
+    var work = false;
     $("#projects").click(function(){
              
-                    if(ciao == false){
+                    if(work == false){
                         $(".projectwrap").addClass("projectwrap-none");
-                        ciao = true;
+                        work = true;
                     }
                     else{
                         $(".projectwrap").removeClass("projectwrap-none");
-                        ciao = false;
+                        work = false;
                     }
                     
                     
