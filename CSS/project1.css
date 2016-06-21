@@ -1,0 +1,182 @@
+body {
+    head margin: 0;
+    padding: 0;
+    border: 15px solid magenta;
+    cursor: crosshair;
+}
+
+
+/*-----FONT-----*/
+
+@font-face {
+    font-family: 'Apercu';
+    src: url('../font/Apercu.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'apercu-mono-webfont';
+    src: url('../font/apercu-mono-webfont.ttf') format('truetype');
+}
+
+
+/*-----HEADER-----*/
+
+.menu {
+    position: fixed;
+    width: 100%;
+    top: 60px;
+    z-index: 1;
+}
+
+header {
+    width: 100%;
+    font-family: 'Apercu';
+    color: #e72000;
+    text-align: left;
+}
+
+header h1 {
+    padding-left: 50px;
+}
+
+nav {
+    width: 100%;
+    margin-top: -60px;
+}
+
+nav ul {
+    text-align: right;
+    margin: 0 auto;
+    padding-right: 140px;
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 0;
+    margin: 0% 1%;
+    font-family: 'Apercu';
+    font-size: 30px;
+}
+
+a {
+    color: #e72000;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: line-through;
+    color: magenta;
+}
+
+
+/*-----CONTENT-----*/
+
+.content {
+    width: 100%;
+    max-width: 1000px;
+    margin: 120px auto;
+    font-size: 0;
+    text-align: center;
+}
+
+.content h2 {
+    font-family: 'Apercu';
+    color: black;
+    font-size: 24px;
+    margin: 0;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.content p {
+    font-family: 'apercu-mono-webfont';
+    font-size: 12px;
+    text-align: left;
+    margin: 25px 50px;
+}
+
+
+/*-----PICTURES-----*/
+
+.pictures {
+    margin: 50px auto;
+    width: 100%;
+}
+
+.pictures2 {
+    margin: 50px auto;
+    width: 50%;
+}
+
+.pictures img {
+    width: 95%;
+    padding: 5px;
+    text-align: center;
+}
+
+
+/*-----FOOTER-----*/
+
+footer {
+    position: relative;
+    top: -50px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 300;
+    font-family: 'Apercu', sans-serif;
+    color: magenta;
+}
+
+.botonesfooter {
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+.back {
+    position: absolute;
+    left: 0;
+    
+    text-align: left;
+    width: 300px;
+}
+
+.next {
+    
+    position: absolute;
+    right: 0;
+    
+    text-align: right;
+    width: 300px;
+}
+
+
+/*-----MEDIA QUERIES-----*/
+
+@media (max-width: 900px) {
+    .back a {
+        font-size: 20px;
+    }
+    .next a {
+        font-size: 20px;
+    }
+    footer a {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    nav ul {
+        padding-right: 50px;
+    }
+    nav {
+        margin-top: -44px;
+    }
+    nav ul li {
+        font-size: 24px;
+    }
+    header h1 {
+        padding-left: 20px;
+        font-size: 24px;
+    }
+}
