@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" />
     <link href="CSS/project1.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="img/Cursor.png" />
 </head>
 
 
@@ -16,30 +17,72 @@
 
     <!-----NAVIGATION----->
 
-    <div class="menu">
+    <h1><a class="logo" href="index.html">diego bernal h.</a></h1>
 
-        <header>
-            <h1><a href="index.html">diego bernal h.</a></h1>
-        </header>
-        <nav>
-            <ul>
-                <li><a href="index.html">work</a></li>
-                <li><a href="index.html">c.v</a></li>
-            </ul>
-        </nav>
+    <!-----CHECKBOXES----->
 
+
+    <div class="contentnav">
+        <div class="checkboxes">
+            <input type="checkbox" id="projects" name="projects" checked="checked" />
+            <label for="projects"><span></span>Work</label>
+        </div>
+        <div class="checkboxes">
+            <input type="checkbox" id="background" name="background" />
+            <label for="background"><span></span>Crab</label>
+        </div>
+        <div class="checkboxes">
+            <input type="checkbox" id="bio" name="bio" checked="checked" />
+            <label for="bio"><span></span>About</label>
+        </div>
+        <div class="checkboxes">
+            <input type="checkbox" id="email" name="email" />
+            <label for="email"><span></span>Contact</label>
+        </div>
     </div>
 
+
+
+
     <!-----CONTENT----->
+    <div class="bg">
+
+    </div>
 
 
     <div class="content">
 
-        <h2>pepe pino wood glasses.</h2>
-        <p>An effort to create a product that embrace individuality and uniqueness that can only be found in a natural setting. the desire to experiment with the design, materials and aesthetics in search of something that works. The focus of the brand is still that of their roots, innovation and creation. The manufacturing process and classical craftsmanship merge to create a unique art form. where completely handmade pieces are promoted. all our woods are made of recycled wood scraps and reforested , giving them a new utility, the timber handling is minimized in order to highlight the natural approach.</p>
+        <h2>pepe pino wood glasses.<br/>product design</h2>
+        <p>An effort to create a product that embrace individuality and uniqueness that can only be found in a natural setting. the desire to experiment with the design, materials and aesthetics in search of something that works. The focus of the brand is still that of their roots, innovation and creation. The manufacturing process and classical craftsmanship merge to create a unique art form. where completely handmade pieces are promoted. all our woods are made of recycled wood scraps and reforested, giving them a new utility, the timber handling is minimized in order to highlight the natural approach.</p>
 
 
         <div class="pictures">
+
+            <style>
+                .embed-container {
+                    position: relative;
+                    padding-bottom: 56.25%;
+                    height: 0;
+                    overflow: hidden;
+                    max-width: 100%;
+                }
+                
+                .embed-container iframe,
+                .embed-container object,
+                .embed-container embed {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                }
+            </style>
+            <div class='embed-container'>
+                <iframe src='https://player.vimeo.com/video/91381988?title=0&byline=0&portrait=0' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+            </div>
+
             <img src="img/pepepino/pepepino1.jpg">
 
 
@@ -73,13 +116,29 @@
         </div>
 
 
-        <a href="index.html">back to work &crarr;</a>
+        <a href="index.html">back to home &crarr;</a>
         <br>
-        <a href="mailto:diegobernalh@yahoo.com">diegobernalh@yahoo.com</a>
+
     </footer>
 
 
 
+    <!-- EMAIL -->
+
+    <div class="contact">
+        <p class="email" id="dragemail">(e.): <a href="mailto:diegobernalh@yahoo.com">diegobernalh@yahoo.com</a></p>
+
+        <p class="instagram" id="draginstagram"><a href="http://instagram.com/diegobernaltite">Instagram</a></p>
+
+
+        <p class="behance"><a href="http://www.behance.net/diegobernalh">Behance</a></p>
+
+    </div>
+
+
+
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="CSS/javascript_instagram.js"></script>
 
 
 

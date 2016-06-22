@@ -1,16 +1,42 @@
-html{
-    border: 10px solid #00FF00;
-    height: 800px;
-   
-   
-}
 body {
+    background-image: url(../img/bg.png);
     margin: 10px;
-    padding: 0;
-    height: 100%;
-  
-   
+    /*border: 10px solid #00FF00;*/
+}
 
+.bg {
+    background-image: url(../img/crabmonster.gif);
+    background-size: 100%;
+}
+
+
+/*-----LOGO-----*/
+
+.logo {
+    width: 100%;
+    font-family: 'Apercu';
+    color: black;
+    margin: 0 auto;
+    max-width: 800px;
+    font-size: 28px;
+    text-align: center;
+    width: 100%;
+    background-color: white;
+}
+
+h1 {
+    position: fixed;
+    top: 10px;
+    left: 170px;
+}
+
+.contentnav {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    text-align: center;
 }
 
 
@@ -24,7 +50,6 @@ input[type="checkbox"] + label span {
     display: inline-block;
     width: 40px;
     height: 40px;
-    margin: 0px 5px;
     background: url(../img/sprite.png) 0px top no-repeat;
     cursor: pointer;
     vertical-align: bottom;
@@ -38,8 +63,7 @@ label {
     font-family: 'Apercu';
     color: #FF0000;
     font-size: 28px;
-    margin: 0px 22px;
-    
+    margin: auto 10px;
     cursor: pointer;
 }
 
@@ -47,100 +71,89 @@ label {
     display: inline-block;
 }
 
-.contentnav {
-    width: 100%;
-    max-width: 1000px;
-    margin: 40px auto;
-    text-align: center;
-}
-
 
 /*-----CONTENT-----*/
 
 .content {
     width: 100%;
-    max-width: 900px;
-    margin: 50px auto;
-    text-align: left;
-    
+    max-width: 800px;
+    margin: auto;
+    background-color: white;
+    box-shadow: -10px 10px 5px #888888;
 }
 
-.content-none{
+.content-none {
     opacity: 0;
     visibility: hidden;
 }
 
 .text {
-    font-family: 'Apercu';
+    font-family: 'apercu-mono-webfont';
     color: black;
-    font-size: 28px;
-    padding: 0 10px;
+    font-size: 20px;
+    padding: 10px 30px;
+    text-align: left;
+    margin: 25px 0;
 }
 
 a {
     color: #FF0000;
     text-decoration: none;
 }
-.projectwrap{
-    display:flex;
-    
-    
-    
+
+.projectwrap {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-
-
-.projectwrap-none{
+.projectwrap-none {
     display: none;
-    
-    
 }
-.project1  {
-    position: absolute;
-    top: 200px;
-    left:600px;
-    
+
+.project1 {
+    display: inline-block;
+    margin: 5px;
     background-color: white;
-    border: solid red 10px;
-    padding: 0;
-    background-image: none;
-    font-family: 'Apercu';
-    color: black;
-    font-size: 28px;
+    border: solid red 5px;
     box-shadow: -10px 10px 5px #888888;
     cursor: move;
 }
 
-
-
-.project2  {
-    
+.project2 {
+    display: inline-block;
+    margin: 5px;
     background-color: white;
-    border: solid red 10px;
-    padding: 0;
-    background-image: none;
-    font-family: 'Apercu';
-    color: black;
-    font-size: 28px;
+    border: solid red 5px;
     box-shadow: -10px 10px 5px #888888;
     cursor: move;
+}
+
+img {
+    width: 250px;
+    height: 160px;
 }
 
 .project1 p {
     font-family: 'apercu';
-    font-size: 28px;
-    padding: 0 60px;
-    margin: 5px 0;
-}
-.project2 p {
-    font-family: 'apercu';
-    font-size: 28px;
-    padding: 0 60px;
-    margin: 5px 0;
+    font-size: 24px;
+    padding: 0 20px;
+    margin: 5px;
 }
 
-img {
-    width: 400px;
+.project2 p {
+    font-family: 'apercu';
+    font-size: 24px;
+    padding: 0 20px;
+    margin: 5px;
+}
+
+.contact {
+    display: none;
+}
+
+.contact-none {
+    display: block;
 }
 
 .email {
@@ -149,7 +162,7 @@ img {
     left: 500px;
     display: inline-block;
     background-color: white;
-    border: solid blue 10px;
+    border: solid blue 5px;
     padding: 30px;
     background-image: none;
     font-family: 'Apercu';
@@ -158,9 +171,6 @@ img {
     box-shadow: -10px 10px 5px #888888;
     cursor: move;
 }
-
-
-
 
 .behance {
     position: absolute;
@@ -168,7 +178,7 @@ img {
     left: 700px;
     display: inline-block;
     background-color: white;
-    border: solid blue 10px;
+    border: solid blue 5px;
     padding: 30px;
     background-image: none;
     font-family: 'Apercu';
@@ -177,8 +187,6 @@ img {
     box-shadow: -10px 10px 5px #888888;
     cursor: move;
 }
-
-
 
 .instagram {
     position: absolute;
@@ -186,7 +194,7 @@ img {
     left: 300px;
     display: inline-block;
     background-color: white;
-    border: solid blue 10px;
+    border: solid blue 5px;
     padding: 30px;
     background-image: none;
     font-family: 'Apercu';
@@ -195,8 +203,6 @@ img {
     box-shadow: -10px 10px 5px #888888;
     cursor: move;
 }
-
-
 
 a:hover {
     background-image: none;
@@ -216,6 +222,11 @@ a:hover {
 @font-face {
     font-family: 'apercu-mono-webfont';
     src: url('../font/apercu-mono-webfont.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'TimesNewRamen-Regular';
+    src: url('../font/TimesNewRamen-Regular.ttf') format('truetype');
 }
 
 
