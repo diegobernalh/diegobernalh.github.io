@@ -76,7 +76,7 @@ input[type="checkbox"]:checked + label span {
 
 label {
     font-family: 'Apercu';
-    color: #FF0000;
+    color: black;
     font-size: 28px;
     margin: auto 20px;
     cursor: pointer;

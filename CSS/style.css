@@ -10,6 +10,20 @@ body {
 }
 
 
+/*-----HOVER-----*/
+
+a {
+    color: red;
+    text-decoration: none;
+}
+
+a:hover {
+    background-image: none;
+    color: #00FF00;
+    text-decoration: line-through;
+}
+
+
 /*-----LOGO-----*/
 
 .logo {
@@ -61,7 +75,7 @@ input[type="checkbox"]:checked + label span {
 
 label {
     font-family: 'Apercu';
-    color: #FF0000;
+    color: black;
     font-size: 28px;
     margin: auto 20px;
     cursor: pointer;
@@ -96,11 +110,6 @@ label {
     margin: 25px 0;
 }
 
-a {
-    color: #FF0000;
-    text-decoration: none;
-}
-
 .projectwrap {
     width: 100%;
     max-width: 800px;
@@ -113,7 +122,7 @@ a {
 
 .project1 {
     display: inline-block;
-    margin: 5px;
+    margin: 2px;
     background-color: white;
     border: solid red 5px;
     box-shadow: -10px 10px 5px #888888;
@@ -122,7 +131,7 @@ a {
 
 .project2 {
     display: inline-block;
-    margin: 5px;
+    margin: 2px;
     background-color: white;
     border: solid red 5px;
     box-shadow: -10px 10px 5px #888888;
@@ -202,13 +211,6 @@ img {
     font-size: 28px;
     box-shadow: -10px 10px 5px #888888;
     cursor: move;
-}
-
-a:hover {
-    background-image: none;
-    background-color: white;
-    color: #00FF00;
-    text-decoration: line-through;
 }
 
 
