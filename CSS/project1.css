@@ -42,7 +42,9 @@ a:hover {
 h1 {
     position: fixed;
     top: 10px;
-    left: 170px;
+    left: 200px;
+    z-index: 1;
+    s
 }
 
 .contentnav {
@@ -84,6 +86,16 @@ label {
 
 .checkboxes {
     display: inline-block;
+}
+
+.check {
+    color: black;
+}
+
+.check:hover {
+    background: none;
+    color: blue;
+    text-decoration: line-through;
 }
 
 

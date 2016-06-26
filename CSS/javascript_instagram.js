@@ -33,6 +33,8 @@ $(function () {
     $("#dragbehance").draggable();
     $("#dragpepepino").draggable();
     $("#dragticket").draggable();
+    $("#dragastro").draggable();
+    $("#yo").draggable();
 });
 
 
