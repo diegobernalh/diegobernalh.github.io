@@ -34,7 +34,7 @@ $(function () {
     $("#dragpepepino").draggable();
     $("#dragticket").draggable();
     $("#dragastro").draggable();
-    $("#yo").draggable();
+    $("#dragatm").draggable();
 });
 
 
