@@ -61,7 +61,24 @@ $(document).ready(function () {
 
 
     });
+    
+    
+    
+    var aboutme = true;
+    $("#biome").click(function () {
 
+        if (aboutme == false) {
+            $(".contentme").addClass("contentme-none");
+            aboutme = true;
+        } else {
+            $(".contentme").removeClass("contentme-none");
+            aboutme = false;
+        }
+
+
+    });
+    
+   
     //------------WORK---------------
 
     var work = false;
@@ -73,6 +90,20 @@ $(document).ready(function () {
         } else {
             $(".projectwrap").removeClass("projectwrap-none");
             work = false;
+        }
+
+
+    });
+    
+    var work2 = true;
+    $("#projects2").click(function () {
+
+        if (work2 == false) {
+            $(".projectwrap").addClass("projectwrap-none");
+            work2 = true;
+        } else {
+            $(".projectwrap").removeClass("projectwrap-none");
+            work2 = false;
         }
 
 
@@ -93,6 +124,10 @@ $(document).ready(function () {
 
 
     });
+    
+    
+    
+    
 
 
     //------------BG---------------
@@ -110,6 +145,10 @@ $(document).ready(function () {
 
 
     });
+    
+    
+    
+  
 
 
 

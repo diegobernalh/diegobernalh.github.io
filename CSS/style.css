@@ -111,27 +111,16 @@
         text-align: left;
         margin: 25px 0;
         background-color: white;
-        box-shadow: -10px 10px 3px #262626;
+        box-shadow: -8px 8px  #262626;
     }
     
-    .photo {
-        text-align: center;
-        top: 160px;
-        left: 50%;
-        margin-left: -160px;
-        z-index: -1;
-        display: inline-block;
-        position: absolute;
-    }
+   
     
-    .photo img {
-        width: 322px;
-        height: 320px;
-    }
+ /*-----PROYECTS-----*/
     
     .projectwrap {
         width: 100%;
-        max-width: 800px;
+        max-width: 900px;
         margin: auto;
         text-align: center;
         font-size: 0;
@@ -143,8 +132,8 @@
     
     .project1 {
         background-color: white;
-        box-shadow: -10px 10px 3px #262626;
-        margin: 7px;
+        box-shadow: -8px 8px  #262626;
+        margin:  10px 10px;
         cursor: move;
         position: relative;
         display: inline-block;
@@ -205,50 +194,47 @@
     }
     
     .email {
-        position: absolute;
-        top: 100px;
+        position: fixed;
+        top: 200px;
         left: 500px;
         display: inline-block;
         background-color: white;
-        border: solid blue 5px;
         padding: 30px;
         background-image: none;
         font-family: 'Apercu';
         color: black;
         font-size: 28px;
-        box-shadow: -10px 10px 5px #888888;
+        box-shadow: -8px 8px  #262626;
         cursor: move;
     }
     
     .behance {
-        position: absolute;
+        position: fixed;
         top: 450px;
         left: 700px;
         display: inline-block;
         background-color: white;
-        border: solid blue 5px;
         padding: 30px;
         background-image: none;
         font-family: 'Apercu';
         color: black;
         font-size: 28px;
-        box-shadow: -10px 10px 5px #888888;
+        box-shadow: -8px 8px  #262626;
         cursor: move;
     }
     
     .instagram {
-        position: absolute;
-        top: 150px;
-        left: 300px;
+        position: fixed;
+        top: 350px;
+        left: 200px;
         display: inline-block;
         background-color: white;
-        border: solid blue 5px;
         padding: 30px;
         background-image: none;
         font-family: 'Apercu';
         color: black;
         font-size: 28px;
-        box-shadow: -10px 10px 5px #888888;
+        box-shadow: -8px 8px  #262626;
         cursor: move;
     }
     /*-----FONT-----*/
@@ -298,6 +284,13 @@
         font-size: 24px;
     }
 }-----*/
+
+
+
+
+
+
+/*-----LOGO_GLITCH-----*/
     
     .glitch {
         font-family: 'Apercu';
