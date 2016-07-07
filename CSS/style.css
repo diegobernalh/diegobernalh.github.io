@@ -111,12 +111,9 @@
         text-align: left;
         margin: 25px 0;
         background-color: white;
-        box-shadow: -8px 8px  #262626;
+        box-shadow: -8px 8px #262626;
     }
-    
-   
-    
- /*-----PROYECTS-----*/
+    /*-----PROYECTS-----*/
     
     .projectwrap {
         width: 100%;
@@ -132,8 +129,8 @@
     
     .project1 {
         background-color: white;
-        box-shadow: -8px 8px  #262626;
-        margin:  10px 10px;
+        box-shadow: -8px 8px #262626;
+        margin: 10px 10px;
         cursor: move;
         position: relative;
         display: inline-block;
@@ -204,7 +201,7 @@
         font-family: 'Apercu';
         color: black;
         font-size: 28px;
-        box-shadow: -8px 8px  #262626;
+        box-shadow: -8px 8px #262626;
         cursor: move;
     }
     
@@ -219,7 +216,7 @@
         font-family: 'Apercu';
         color: black;
         font-size: 28px;
-        box-shadow: -8px 8px  #262626;
+        box-shadow: -8px 8px #262626;
         cursor: move;
     }
     
@@ -234,7 +231,7 @@
         font-family: 'Apercu';
         color: black;
         font-size: 28px;
-        box-shadow: -8px 8px  #262626;
+        box-shadow: -8px 8px #262626;
         cursor: move;
     }
     /*-----FONT-----*/
@@ -284,13 +281,7 @@
         font-size: 24px;
     }
 }-----*/
-
-
-
-
-
-
-/*-----LOGO_GLITCH-----*/
+    /*-----LOGO_GLITCH-----*/
     
     .glitch {
         font-family: 'Apercu';
@@ -375,7 +366,7 @@
         left: 0;
         text-shadow: -1px 0 red;
         top: 0;
-        color: black;
+        color: red;
         background: white;
         overflow: hidden;
         clip: rect(0, 900px, 0, 0);
