@@ -44,7 +44,6 @@ h1 {
     top: 10px;
     left: 200px;
     z-index: 1;
-    s
 }
 
 .contentnav {
@@ -101,20 +100,15 @@ label {
 
 /*-----CONTENT-----*/
 
-.contentewrap{
-    
+.contentewrap {
     width: 100%;
     max-width: 800px;
     margin: auto;
     text-align: center;
-    
     z-index: 1;
-    
 }
 
-
 .contentme {
-    
     width: 100%;
     max-width: 800px;
     margin: auto;
@@ -324,6 +318,7 @@ footer {
 .back {
     position: absolute;
     left: 0;
+    left: 2%;
     text-align: left;
     width: 300px;
 }
@@ -361,26 +356,26 @@ footer {
     footer a {
         font-size: 20px;
     }
+    .content h2 {
+        margin-left: 20px;
+    }
 }
 
 @media (max-width: 600px) {
-    nav ul {
-        padding-right: 50px;
+    .checkboxes {
+        display: list-item;
+        text-align: left;
+        width: 70%;
+        margin: 0 auto;
     }
-    nav {
-        margin-top: -44px;
-    }
-    nav ul li {
-        font-size: 24px;
-    }
-    header h1 {
-        padding-left: 20px;
-        font-size: 24px;
+    h1 {
+        position: fixed;
+        top: 10px;
+        left: 60px;
+        z-index: 1;
     }
 }
-
-
-/*---------------------------------*/
+/*--------------GLITCH_LOGO-------------------*/
 
 .glitch {
     font-family: 'Apercu';

@@ -250,37 +250,37 @@
         font-family: 'TimesNewRamen-Regular';
         src: url('../font/TimesNewRamen-Regular.ttf') format('truetype');
     }
-    /*-----MEDIA QUERIES
-
-@media (max-width: 900px) {
-    .project1 {
-        width: 38%;
+    /*-----MEDIA QUERIES-----*/
+    
+    @media (max-width: 900px) {
+        .back a {
+            font-size: 20px;
+        }
+        .next a {
+            font-size: 20px;
+        }
+        footer a {
+            font-size: 20px;
+        }
+        .content h2 {
+            margin-left: 20px;
+        }
     }
-    .project1 h2 {
-        position: absolute;
-        left: 20px;
-        top: 20px;
+    
+    @media (max-width: 600px) {
+        .checkboxes {
+            display: list-item;
+            text-align: left;
+            width: 70%;
+            margin: 0 auto;
+        }
+        h1 {
+            position: fixed;
+            top: 10px;
+            left: 60px;
+            z-index: 1;
+        }
     }
-}
-
-@media (max-width: 600px) {
-    .project1 {
-        width: 68%;
-    }
-    nav ul {
-        padding-right: 50px;
-    }
-    nav {
-        margin-top: -44px;
-    }
-    nav ul li {
-        font-size: 24px;
-    }
-    header h1 {
-        padding-left: 20px;
-        font-size: 24px;
-    }
-}-----*/
     /*-----LOGO_GLITCH-----*/
     
     .glitch {
