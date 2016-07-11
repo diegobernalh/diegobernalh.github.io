@@ -130,11 +130,10 @@ label {
 
 .text {
     font-family: 'apercu-mono-webfont';
-    color: black;
-    font-size: 20px;
-    padding: 10px 30px;
+    font-size: 18px;
     text-align: left;
-    margin: 25px 0;
+    padding: 10px 30px;
+    margin: 25px 20px;
     background-color: white;
     box-shadow: -8px 8px #262626;
 }
@@ -145,6 +144,14 @@ label {
     font-size: 28px;
     text-align: left;
     margin-left: -60px;
+}
+
+.content h2 p {
+    font-family: 'apercu-mono-webfont';
+    color: gray;
+    font-size: 16px;
+    text-align: left;
+    margin-left: -8px;
 }
 
 .content .info {
@@ -330,6 +337,11 @@ footer {
     width: 300px;
 }
 
+.home {
+    position: relative;
+    width: 300px;
+}
+
 
 /*-----FONT-----*/
 
@@ -347,13 +359,13 @@ footer {
 /*-----MEDIA QUERIES-----*/
 
 @media (max-width: 900px) {
-    .back a {
+    .back {
         font-size: 20px;
     }
-    .next a {
+    .next {
         font-size: 20px;
     }
-    footer a {
+    .home {
         font-size: 20px;
     }
     .content h2 {
@@ -375,6 +387,8 @@ footer {
         z-index: 1;
     }
 }
+
+
 /*--------------GLITCH_LOGO-------------------*/
 
 .glitch {
