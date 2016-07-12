@@ -5,8 +5,8 @@ body {
 }
 
 .bg {
-    background-image: url(../img/crabmonster.gif);
-    background-size: 100%;
+    background-image: url(../img/dinos.gif);
+    background-size: 50%;
 }
 
 
@@ -320,21 +320,25 @@ footer {
     font-family: 'Apercu';
     color: red;
     font-size: 28px;
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
 }
 
 .back {
     position: absolute;
     left: 0;
-    left: 2%;
+   
     text-align: left;
-    width: 300px;
+    width: 200px;
 }
 
 .next {
     position: absolute;
     right: 0;
+    
     text-align: right;
-    width: 300px;
+    width: 200px;
 }
 
 .home {
@@ -361,9 +365,11 @@ footer {
 @media (max-width: 900px) {
     .back {
         font-size: 20px;
+        
     }
     .next {
         font-size: 20px;
+        
     }
     .home {
         font-size: 20px;
