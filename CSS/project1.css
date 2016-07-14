@@ -2,6 +2,7 @@ body {
     background-image: url(../img/bg.png);
     margin: 10px;
     /*border: 10px solid #00FF00;*/
+
 }
 
 .bg {
@@ -115,6 +116,7 @@ label {
     text-align: center;
     cursor: move;
     position: fixed;
+   
 }
 
 .contentme-none {
@@ -129,14 +131,16 @@ label {
 }
 
 .text {
-    font-family: 'apercu-mono-webfont';
-    font-size: 18px;
-    text-align: left;
-    padding: 10px 30px;
-    margin: 25px 20px;
-    background-color: white;
-    box-shadow: -8px 8px #262626;
-}
+        font-family: 'apercu-mono-webfont';
+        font-size: 18px;
+        text-align: left;
+        padding: 10px 30px;
+        margin: 25px 20px;
+        background-color: white;
+        box-shadow: -8px 8px #262626;
+    margin-top:75px;
+    border: 2px solid black; 
+    }
 
 .content h2 {
     font-family: 'Apercu';
@@ -161,6 +165,7 @@ label {
     padding: 10px 30px;
     margin: 25px 20px;
     background-color: white;
+    border: 2px solid black; 
     box-shadow: -8px 8px #262626;
 }
 
@@ -170,10 +175,10 @@ label {
 .projectwrap {
     width: 100%;
     max-width: 800px;
-    margin: auto;
+   margin-top: 75px;
     text-align: center;
     font-size: 0;
-    position: fixed;
+    position: absolute;
     z-index: 1;
 }
 
@@ -184,35 +189,14 @@ label {
 .project1 {
     background-color: white;
     box-shadow: -8px 8px #262626;
-    margin: 8px;
+    margin: 6px;
     cursor: move;
     display: inline-block;
     z-index: 1;
+    border: 2px solid black; 
 }
 
-.project2 {
-    background-color: white;
-    box-shadow: -8px 8px #262626;
-    margin: 8px;
-    cursor: move;
-    display: inline-block;
-}
 
-.project3 {
-    background-color: white;
-    box-shadow: -8px 8px #262626;
-    margin: 8px;
-    cursor: move;
-    display: inline-block;
-}
-
-.project4 {
-    background-color: white;
-    box-shadow: -8px 8px #262626;
-    margin: 8px;
-    cursor: move;
-    display: inline-block;
-}
 
 .project1 img {
     width: 250px;
@@ -241,16 +225,14 @@ p {
 .pictures {
     margin: 50px auto;
     width: 100%;
+   
 }
 
-.pictures2 {
-    margin: 50px auto;
-    width: 50%;
-}
 
 .pictures img {
-    width: 95%;
-    padding: 5px;
+    width: 100%;
+    padding:0;
+    margin-bottom: 10px;
     text-align: center;
 }
 
@@ -259,16 +241,25 @@ p {
 
 .contact {
     display: none;
+    width: 100%;
 }
 
 .contact-none {
     display: block;
+    position: fixed;
+    top: 150px;
+    width: 100%;
+  
+}
+
+.contact div {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .email {
-    position: fixed;
-    top: 200px;
-    left: 500px;
+    
     display: inline-block;
     background-color: white;
     padding: 30px;
@@ -278,12 +269,11 @@ p {
     font-size: 28px;
     box-shadow: -8px 8px #262626;
     cursor: move;
+    border: 2px solid black;
 }
 
 .behance {
-    position: fixed;
-    top: 450px;
-    left: 700px;
+    
     display: inline-block;
     background-color: white;
     padding: 30px;
@@ -293,12 +283,11 @@ p {
     font-size: 28px;
     box-shadow: -8px 8px #262626;
     cursor: move;
+    border: 2px solid black;
 }
 
 .instagram {
-    position: fixed;
-    top: 350px;
-    left: 200px;
+   
     display: inline-block;
     background-color: white;
     padding: 30px;
@@ -308,6 +297,7 @@ p {
     font-size: 28px;
     box-shadow: -8px 8px #262626;
     cursor: move;
+    border: 2px solid black;
 }
 
 
@@ -377,6 +367,15 @@ footer {
     .content h2 {
         margin-left: 20px;
     }
+    .text{
+        margin: 25px 20px
+        }
+    
+  
+    
+    
+    
+    
 }
 
 @media (max-width: 600px) {

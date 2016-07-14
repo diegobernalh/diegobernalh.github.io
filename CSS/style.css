@@ -108,10 +108,16 @@
         font-size: 18px;
         text-align: left;
         padding: 10px 30px;
-        margin: 25px 20px;
+        margin: 25px 5px;
         background-color: white;
         box-shadow: -8px 8px #262626;
+        border: 2px solid black; 
     }
+
+
+
+
+
     /*-----PROJECTS-----*/
     
     .projectwrap {
@@ -120,6 +126,7 @@
         margin: auto;
         text-align: center;
         font-size: 0;
+        
     }
     
     .projectwrap-none {
@@ -133,6 +140,8 @@
         cursor: move;
         position: relative;
         display: inline-block;
+        border: 2px solid black; 
+        
     }
     
     img {
@@ -155,84 +164,71 @@
         color: gray;
         text-align: left;
     }
-    /*
-    #dragpepepino {
-        position: absolute;
-        top: 300px;
-        left: 300px;
-    }
+
+
+/*-----CONTACT-----*/
     
-    #dragticket {
-        position: absolute;
-        top: 240px;
-        left: 340px;
-    }
+   .contact {
+    display: none;
+    width: 100%;
+}
+
+.contact-none {
+    display: block;
+    position: fixed;
+    top: 150px;
+    width: 100%;
+  
+}
+
+.contact div {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.email {
     
-    #dragastro {
-        position: absolute;
-        top: 180px;
-        left: 380px;
-    }
+    display: inline-block;
+    background-color: white;
+    padding: 30px;
+    background-image: none;
+    font-family: 'Apercu';
+    color: black;
+    font-size: 28px;
+    box-shadow: -8px 8px #262626;
+    cursor: move;
+    border: 2px solid black;
+}
+
+.behance {
     
-    #dragatm {
-        position: absolute;
-        top: 120px;
-        left: 420px;
-    }
-*/
-    
-    .contact {
-        display: none;
-    }
-    
-    .contact-none {
-        display: block;
-    }
-    
-    .email {
-        position: fixed;
-        top: 200px;
-        left: 500px;
-        display: inline-block;
-        background-color: white;
-        padding: 30px;
-        background-image: none;
-        font-family: 'Apercu';
-        color: black;
-        font-size: 28px;
-        box-shadow: -8px 8px #262626;
-        cursor: move;
-    }
-    
-    .behance {
-        position: fixed;
-        top: 450px;
-        left: 700px;
-        display: inline-block;
-        background-color: white;
-        padding: 30px;
-        background-image: none;
-        font-family: 'Apercu';
-        color: black;
-        font-size: 28px;
-        box-shadow: -8px 8px #262626;
-        cursor: move;
-    }
-    
-    .instagram {
-        position: fixed;
-        top: 350px;
-        left: 200px;
-        display: inline-block;
-        background-color: white;
-        padding: 30px;
-        background-image: none;
-        font-family: 'Apercu';
-        color: black;
-        font-size: 28px;
-        box-shadow: -8px 8px #262626;
-        cursor: move;
-    }
+    display: inline-block;
+    background-color: white;
+    padding: 30px;
+    background-image: none;
+    font-family: 'Apercu';
+    color: black;
+    font-size: 28px;
+    box-shadow: -8px 8px #262626;
+    cursor: move;
+    border: 2px solid black;
+}
+
+.instagram {
+   
+    display: inline-block;
+    background-color: white;
+    padding: 30px;
+    background-image: none;
+    font-family: 'Apercu';
+    color: black;
+    font-size: 28px;
+    box-shadow: -8px 8px #262626;
+    cursor: move;
+    border: 2px solid black;
+}
+
     /*-----FONT-----*/
     
     @font-face {
@@ -263,6 +259,9 @@
         }
         .content h2 {
             margin-left: 20px;
+        }
+        .text{
+             margin: 25px 20px
         }
     }
     
