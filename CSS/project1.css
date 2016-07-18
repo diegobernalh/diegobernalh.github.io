@@ -2,7 +2,6 @@ body {
     background-image: url(../img/bg.png);
     margin: 10px;
     /*border: 10px solid #00FF00;*/
-
 }
 
 .bg {
@@ -116,7 +115,6 @@ label {
     text-align: center;
     cursor: move;
     position: fixed;
-   
 }
 
 .contentme-none {
@@ -131,16 +129,16 @@ label {
 }
 
 .text {
-        font-family: 'apercu-mono-webfont';
-        font-size: 18px;
-        text-align: left;
-        padding: 10px 30px;
-        margin: 25px 20px;
-        background-color: white;
-        box-shadow: -8px 8px #262626;
-    margin-top:75px;
-    border: 2px solid black; 
-    }
+    font-family: 'apercu-mono-webfont';
+    font-size: 18px;
+    text-align: left;
+    padding: 10px 30px;
+    margin: 25px 20px;
+    background-color: white;
+    box-shadow: -8px 8px #262626;
+    margin-top: 75px;
+    border: 2px solid black;
+}
 
 .content h2 {
     font-family: 'Apercu';
@@ -165,7 +163,7 @@ label {
     padding: 10px 30px;
     margin: 25px 20px;
     background-color: white;
-    border: 2px solid black; 
+    border: 2px solid black;
     box-shadow: -8px 8px #262626;
 }
 
@@ -175,7 +173,7 @@ label {
 .projectwrap {
     width: 100%;
     max-width: 800px;
-   margin-top: 75px;
+    margin-top: 75px;
     text-align: center;
     font-size: 0;
     position: absolute;
@@ -193,10 +191,8 @@ label {
     cursor: move;
     display: inline-block;
     z-index: 1;
-    border: 2px solid black; 
+    border: 2px solid black;
 }
-
-
 
 .project1 img {
     width: 250px;
@@ -225,13 +221,11 @@ p {
 .pictures {
     margin: 50px auto;
     width: 100%;
-   
 }
-
 
 .pictures img {
     width: 100%;
-    padding:0;
+    padding: 0;
     margin-bottom: 10px;
     text-align: center;
 }
@@ -249,7 +243,6 @@ p {
     position: fixed;
     top: 150px;
     width: 100%;
-  
 }
 
 .contact div {
@@ -259,7 +252,6 @@ p {
 }
 
 .email {
-    
     display: inline-block;
     background-color: white;
     padding: 30px;
@@ -273,7 +265,6 @@ p {
 }
 
 .behance {
-    
     display: inline-block;
     background-color: white;
     padding: 30px;
@@ -287,7 +278,19 @@ p {
 }
 
 .instagram {
-   
+    display: inline-block;
+    background-color: white;
+    padding: 30px;
+    background-image: none;
+    font-family: 'Apercu';
+    color: black;
+    font-size: 28px;
+    box-shadow: -8px 8px #262626;
+    cursor: move;
+    border: 2px solid black;
+}
+
+.linkedin {
     display: inline-block;
     background-color: white;
     padding: 30px;
@@ -318,7 +321,6 @@ footer {
 .back {
     position: absolute;
     left: 0;
-   
     text-align: left;
     width: 200px;
 }
@@ -326,7 +328,6 @@ footer {
 .next {
     position: absolute;
     right: 0;
-    
     text-align: right;
     width: 200px;
 }
@@ -355,11 +356,9 @@ footer {
 @media (max-width: 900px) {
     .back {
         font-size: 20px;
-        
     }
     .next {
         font-size: 20px;
-        
     }
     .home {
         font-size: 20px;
@@ -367,15 +366,9 @@ footer {
     .content h2 {
         margin-left: 20px;
     }
-    .text{
+    .text {
         margin: 25px 20px
-        }
-    
-  
-    
-    
-    
-    
+    }
 }
 
 @media (max-width: 600px) {

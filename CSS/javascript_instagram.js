@@ -29,6 +29,7 @@ function mouseUp() {
 
 $(function () {
     $("#dragemail").draggable();
+    $("#dragilinkedin").draggable();
     $("#draginstagram").draggable();
     $("#dragbehance").draggable();
     $("#dragpepepino").draggable();
@@ -61,9 +62,9 @@ $(document).ready(function () {
 
 
     });
-    
-    
-    
+
+
+
     var aboutme = true;
     $("#biome").click(function () {
 
@@ -77,8 +78,8 @@ $(document).ready(function () {
 
 
     });
-    
-   
+
+
     //------------WORK---------------
 
     var work = false;
@@ -94,7 +95,7 @@ $(document).ready(function () {
 
 
     });
-    
+
     var work2 = true;
     $("#projects2").click(function () {
 
@@ -124,10 +125,10 @@ $(document).ready(function () {
 
 
     });
-    
-    
-    
-    
+
+
+
+
 
 
     //------------BG---------------
@@ -145,10 +146,10 @@ $(document).ready(function () {
 
 
     });
-    
-    
-    
-  
+
+
+
+
 
 
 
