@@ -38,6 +38,7 @@ $(function () {
     $("#dragatm").draggable();
     $("#dragrayban").draggable();
     $("#dragtartar").draggable();
+    $("#draggit").draggable();
     $("#yo").draggable();
 });
 

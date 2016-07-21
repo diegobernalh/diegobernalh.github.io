@@ -228,6 +228,28 @@
         cursor: move;
         border: 2px solid black;
     }
+    
+    .github {
+        display: inline-block;
+        background-color: white;
+        padding: 30px;
+        background-image: none;
+        font-family: 'Apercu';
+        color: black;
+        font-size: 28px;
+        box-shadow: -8px 8px #262626;
+        cursor: move;
+        border: 2px solid black;
+    }
+    
+    .rights {
+        font-family: 'apercu-mono-webfont';
+        font-size: 10px;
+        text-align: center;
+        background-color: white;
+        margin-top: 50px;
+        color: gray;
+    }
     /*-----FONT-----*/
     
     @font-face {
