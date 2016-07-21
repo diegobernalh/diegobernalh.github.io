@@ -36,6 +36,8 @@ $(function () {
     $("#dragticket").draggable();
     $("#dragastro").draggable();
     $("#dragatm").draggable();
+    $("#dragrayban").draggable();
+    $("#dragtartar").draggable();
     $("#yo").draggable();
 });
 
