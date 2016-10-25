@@ -1,7 +1,8 @@
 body {
-    background-image: url(../img/noise.png);
+   
     margin: 10px;
-    /*border: 10px solid #00FF00;*/
+    /*background-image: url(../img/noise.png);*/
+    background: -webkit-linear-gradient(top, #ffb49e 1%, #efc3ff 40%, #efeb7f 67%, cyan 99%);
 }
 
 .bg {
