@@ -1,10 +1,13 @@
-    html {
+html {
         cursor: url(../img/Cursor_small.png), auto;
-    }
-    
+        
+        
+}
     body {
         /*background-image: url(../img/noise.png);*/
         background: -webkit-linear-gradient(top, #ffb49e 1%, #efc3ff 40%, #efeb7f 67%, cyan 99%);
+        background-size: 100%;
+  
     }
     
     .bg {
