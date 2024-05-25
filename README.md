@@ -1,3 +1,0 @@
-# diegobernalh.github.io
-portfolio
-
