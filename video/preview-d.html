@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; }
+
+  body {
+    background: linear-gradient(135deg, #C0FFEE 0%, #F4B8A5 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  }
+
+  /* ── Phone ── */
+  .phone {
+    width: min(38vw, 38vh);
+    height: min(80vw, 80vh);
+    background: #0F0A07;
+    border-radius: min(5vw, 5vh);
+    position: relative;
+    box-shadow:
+      0 0 0 1.5px rgba(249,243,232,0.15),
+      0 20px 60px rgba(20,8,2,0.35);
+    overflow: hidden;
+    transform-origin: center center;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                border-radius 0.7s ease;
+  }
+
+  .phone.zoomed {
+    transform: scale(8);
+    border-radius: 0;
+  }
+
+  /* notch */
+  .notch {
+    position: absolute;
+    top: min(1.2vw, 1.2vh);
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(8vw, 8vh);
+    height: min(1.4vw, 1.4vh);
+    background: #0F0A07;
+    border-radius: 20px;
+    z-index: 10;
+  }
+
+  /* screen */
+  .screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* screen 1 — scan */
+  .s-scan {
+    background: #F9F3E8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: min(2vw, 2vh);
+    padding: min(4vw, 4vh);
+  }
+
+  .scan-circle {
+    width: min(18vw, 18vh);
+    height: min(18vw, 18vh);
+    border-radius: 50%;
+    border: 2px solid rgba(59,33,16,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: min(7vw, 7vh);
+    position: relative;
+  }
+
+  .scan-corner {
+    position: absolute;
+    width: min(5vw, 5vh);
+    height: min(5vw, 5vh);
+  }
+  .scan-corner::before, .scan-corner::after {
+    content: '';
+    position: absolute;
+    background: #3B2110;
+  }
+  .scan-corner.tl { top: -1px; left: -1px; }
+  .scan-corner.tl::before { top: 0; left: 0; width: min(1.5vw,1.5vh); height: 2px; }
+  .scan-corner.tl::after  { top: 0; left: 0; width: 2px; height: min(1.5vw,1.5vh); }
+  .scan-corner.tr { top: -1px; right: -1px; }
+  .scan-corner.tr::before { top: 0; right: 0; width: min(1.5vw,1.5vh); height: 2px; }
+  .scan-corner.tr::after  { top: 0; right: 0; width: 2px; height: min(1.5vw,1.5vh); }
+  .scan-corner.bl { bottom: -1px; left: -1px; }
+  .scan-corner.bl::before { bottom: 0; left: 0; width: min(1.5vw,1.5vh); height: 2px; }
+  .scan-corner.bl::after  { bottom: 0; left: 0; width: 2px; height: min(1.5vw,1.5vh); }
+  .scan-corner.br { bottom: -1px; right: -1px; }
+  .scan-corner.br::before { bottom: 0; right: 0; width: min(1.5vw,1.5vh); height: 2px; }
+  .scan-corner.br::after  { bottom: 0; right: 0; width: 2px; height: min(1.5vw,1.5vh); }
+
+  .scan-label {
+    font-size: min(2.2vw, 2.2vh);
+    font-weight: 600;
+    color: rgba(59,33,16,0.5);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* screen 2 — recipe */
+  .s-recipe {
+    background: #F9F3E8;
+    display: flex;
+    flex-direction: column;
+    padding: min(5vw,5vh) min(3vw,3vh) min(3vw,3vh);
+    gap: min(1.5vw,1.5vh);
+  }
+
+  .r-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: min(1vw,1vh);
+  }
+
+  .r-title {
+    font-size: min(2.8vw, 2.8vh);
+    font-weight: 700;
+    color: #3B2110;
+  }
+
+  .r-badge {
+    font-size: min(1.6vw, 1.6vh);
+    font-weight: 600;
+    color: #1A7A5E;
+    background: rgba(192,255,238,0.5);
+    border-radius: 20px;
+    padding: min(0.3vw,0.3vh) min(1.2vw,1.2vh);
+    border: 1px solid rgba(26,122,94,0.3);
+    letter-spacing: 0.08em;
+  }
+
+  .r-coffee {
+    font-size: min(2vw, 2vh);
+    color: rgba(59,33,16,0.5);
+    margin-bottom: min(1vw,1vh);
+  }
+
+  .r-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: min(0.8vw,0.8vh) 0;
+    border-bottom: 1px solid rgba(59,33,16,0.07);
+  }
+  .r-row:last-of-type { border-bottom: none; }
+
+  .r-key {
+    font-size: min(1.6vw,1.6vh);
+    color: rgba(59,33,16,0.4);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .r-val {
+    font-size: min(1.9vw,1.9vh);
+    font-weight: 500;
+    color: #3B2110;
+  }
+
+  .r-btn {
+    margin-top: min(1.5vw,1.5vh);
+    background: #3B2110;
+    color: #C0FFEE;
+    border-radius: min(2vw,2vh);
+    padding: min(1.5vw,1.5vh);
+    text-align: center;
+    font-size: min(2vw,2vh);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  /* transitions between screens */
+  .screen { opacity: 0; transition: opacity 0.4s ease; }
+  .screen.active { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="phone" id="phone">
+  <div class="notch"></div>
+
+  <!-- Screen 1: Scan -->
+  <div class="screen s-scan" id="sc1">
+    <div class="scan-circle">
+      <div class="scan-corner tl"></div>
+      <div class="scan-corner tr"></div>
+      <div class="scan-corner bl"></div>
+      <div class="scan-corner br"></div>
+      ☕
+    </div>
+    <div class="scan-label">Scan bag</div>
+  </div>
+
+  <!-- Screen 2: Recipe -->
+  <div class="screen s-recipe" id="sc2">
+    <div class="r-topbar">
+      <div class="r-title">Recipe</div>
+      <div class="r-badge">V60</div>
+    </div>
+    <div class="r-coffee">Yirgacheffe · Ethiopia</div>
+    <div class="r-row"><span class="r-key">Dose</span><span class="r-val">15 g</span></div>
+    <div class="r-row"><span class="r-key">Water</span><span class="r-val">250 ml</span></div>
+    <div class="r-row"><span class="r-key">Temp</span><span class="r-val">93 °C</span></div>
+    <div class="r-row"><span class="r-key">Grind</span><span class="r-val">C40 · 22↓</span></div>
+    <div class="r-row"><span class="r-key">Target</span><span class="r-val">3:00–3:30</span></div>
+    <div class="r-btn">Start brewing</div>
+  </div>
+</div>
+
+<script>
+  const phone = document.getElementById('phone');
+  const screens = [document.getElementById('sc1'), document.getElementById('sc2')];
+
+  function showScreen(i) {
+    screens.forEach((s, j) => s.classList.toggle('active', j === i));
+  }
+
+  const HOLD_SCREEN = 1200;
+  const ZOOM_DELAY  = 800;
+  const ZOOM_DUR    = 700;
+  const HOLD_ZOOM   = 600;
+  const FADE        = 400;
+  const PAUSE       = 300;
+
+  function run() {
+    // reset
+    phone.classList.remove('zoomed');
+    phone.style.transition = `transform 0.7s cubic-bezier(0.4,0,0.2,1), border-radius 0.7s ease`;
+    showScreen(0);
+
+    // switch to recipe screen
+    setTimeout(() => showScreen(1), HOLD_SCREEN);
+
+    // zoom into phone
+    setTimeout(() => {
+      phone.style.transition = `transform ${ZOOM_DUR}ms cubic-bezier(0.4,0,1,1), border-radius ${ZOOM_DUR}ms ease`;
+      phone.classList.add('zoomed');
+    }, HOLD_SCREEN + ZOOM_DELAY);
+
+    // fade out and restart
+    setTimeout(() => {
+      document.body.style.transition = `opacity ${FADE}ms ease`;
+      document.body.style.opacity = '0';
+      setTimeout(() => {
+        document.body.style.transition = 'none';
+        document.body.style.opacity = '1';
+        setTimeout(run, PAUSE);
+      }, FADE);
+    }, HOLD_SCREEN + ZOOM_DELAY + ZOOM_DUR + HOLD_ZOOM);
+  }
+
+  // small entrance animation
+  phone.style.opacity = '0';
+  phone.style.transform = 'translateY(10px)';
+  phone.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  setTimeout(() => {
+    phone.style.opacity = '1';
+    phone.style.transform = 'translateY(0)';
+    showScreen(0);
+    setTimeout(run, 600);
+  }, 200);
+</script>
+</body>
+</html>

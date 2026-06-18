@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    background: linear-gradient(135deg, #F4B8A5 0%, #C0FFEE 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    padding: clamp(12px, 3vw, 32px);
+    gap: clamp(10px, 1.5vw, 16px);
+  }
+
+  .scene-wrap {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(6px, 1vw, 10px);
+  }
+
+  .scene-label {
+    font-size: clamp(11px, 1.5vw, 14px);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(59, 33, 16, 0.45);
+  }
+
+  .card {
+    background: #F9F3E8;
+    border-radius: clamp(10px, 1.5vw, 16px);
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 4px 32px rgba(59, 33, 16, 0.14);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: clamp(12px, 2vw, 18px) clamp(16px, 3vw, 28px);
+    background: #3B2110;
+  }
+
+  .coffee-name {
+    font-size: clamp(12px, 2vw, 16px);
+    font-weight: 600;
+    color: #F9F3E8;
+    line-height: 1.2;
+  }
+
+  .coffee-origin {
+    font-size: clamp(9px, 1.3vw, 11px);
+    color: rgba(249, 243, 232, 0.5);
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  .method-badge {
+    font-size: clamp(8px, 1.2vw, 10px);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #C0FFEE;
+    background: rgba(192, 255, 238, 0.15);
+    border: 1px solid rgba(192, 255, 238, 0.3);
+    border-radius: 20px;
+    padding: clamp(2px, 0.4vw, 4px) clamp(8px, 1.2vw, 12px);
+    white-space: nowrap;
+  }
+
+  .card-body {
+    padding: clamp(14px, 2.5vw, 24px) clamp(16px, 3vw, 28px) clamp(16px, 3vw, 28px);
+  }
+
+  .params {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(6px, 1.2vw, 10px);
+  }
+
+  .param-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .param-row.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .param-label {
+    font-size: clamp(9px, 1.3vw, 11px);
+    color: rgba(59, 33, 16, 0.5);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .param-label .icon {
+    font-style: normal;
+    font-size: clamp(10px, 1.5vw, 13px);
+  }
+
+  .param-value {
+    font-size: clamp(11px, 1.8vw, 14px);
+    font-weight: 500;
+    color: #3B2110;
+    text-align: right;
+  }
+
+  .param-value .cursor {
+    display: inline-block;
+    width: 1px;
+    height: 1em;
+    background: #3B2110;
+    margin-left: 1px;
+    vertical-align: middle;
+    animation: blink 0.8s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .divider {
+    height: 1px;
+    background: rgba(59, 33, 16, 0.1);
+    margin: clamp(10px, 1.5vw, 14px) 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .divider.visible { opacity: 1; }
+
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(4px, 0.8vw, 7px);
+  }
+
+  .step-row {
+    display: flex;
+    align-items: center;
+    gap: clamp(6px, 1vw, 10px);
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .step-row.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .step-num {
+    font-size: clamp(8px, 1.1vw, 10px);
+    font-weight: 700;
+    color: #F9F3E8;
+    background: #3B2110;
+    border-radius: 50%;
+    width: clamp(14px, 2vw, 18px);
+    height: clamp(14px, 2vw, 18px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .step-text {
+    font-size: clamp(9px, 1.3vw, 11px);
+    color: rgba(59, 33, 16, 0.7);
+    line-height: 1.3;
+  }
+
+  .step-text strong {
+    color: #3B2110;
+    font-weight: 600;
+  }
+
+  .footer {
+    margin-top: clamp(12px, 2vw, 18px);
+    padding-top: clamp(8px, 1.2vw, 12px);
+    border-top: 1px solid rgba(59, 33, 16, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .footer.visible { opacity: 1; }
+
+  .footer-label {
+    font-size: clamp(8px, 1.1vw, 10px);
+    color: rgba(59, 33, 16, 0.35);
+    letter-spacing: 0.06em;
+  }
+
+  .ai-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #1A7A5E;
+    opacity: 0.6;
+  }
+</style>
+</head>
+<body>
+<div class="scene-wrap">
+<div class="scene-label">Recipe output</div>
+<div class="card">
+  <div class="card-header">
+    <div>
+      <div class="coffee-name">Yirgacheffe Natural</div>
+      <div class="coffee-origin">Kochere, Ethiopia · Natural</div>
+    </div>
+    <div class="method-badge">V60</div>
+  </div>
+
+  <div class="card-body">
+  <div class="params" id="params">
+    <div class="param-row" id="p1">
+      <span class="param-label"><i class="icon">⚖️</i> Dose</span>
+      <span class="param-value" id="v1">15 g</span>
+    </div>
+    <div class="param-row" id="p2">
+      <span class="param-label"><i class="icon">💧</i> Water</span>
+      <span class="param-value" id="v2">250 ml</span>
+    </div>
+    <div class="param-row" id="p3">
+      <span class="param-label"><i class="icon">🌡️</i> Temperature</span>
+      <span class="param-value" id="v3">93 °C</span>
+    </div>
+    <div class="param-row" id="p4">
+      <span class="param-label"><i class="icon">⚙️</i> Grind</span>
+      <span class="param-value" id="v4">C40 · 22 clicks</span>
+    </div>
+    <div class="param-row" id="p5">
+      <span class="param-label"><i class="icon">⏱️</i> Target time</span>
+      <span class="param-value" id="v5">3:00 – 3:30</span>
+    </div>
+  </div>
+
+  <div class="divider" id="div1"></div>
+
+  <div class="steps" id="steps">
+    <div class="step-row" id="s1">
+      <div class="step-num">1</div>
+      <div class="step-text"><strong>Bloom</strong> — 30 ml × 45 s, gentle pour</div>
+    </div>
+    <div class="step-row" id="s2">
+      <div class="step-num">2</div>
+      <div class="step-text"><strong>Pour 1</strong> — up to 130 ml by 1:00</div>
+    </div>
+    <div class="step-row" id="s3">
+      <div class="step-num">3</div>
+      <div class="step-text"><strong>Pour 2</strong> — finish to 250 ml by 2:00</div>
+    </div>
+    <div class="step-row" id="s4">
+      <div class="step-num">4</div>
+      <div class="step-text">Drain complete by <strong>3:15</strong></div>
+    </div>
+  </div>
+
+  <div class="footer" id="footer">
+    <div class="ai-dot"></div>
+    <span class="footer-label">Generated by AI · based on 3 prior sessions</span>
+  </div>
+  </div>
+</div>
+</div>
+
+<script>
+  const sequence = [
+    { id: 'p1', delay: 200 },
+    { id: 'p2', delay: 500 },
+    { id: 'p3', delay: 800 },
+    { id: 'p4', delay: 1100 },
+    { id: 'p5', delay: 1400 },
+    { id: 'div1', delay: 1800 },
+    { id: 's1', delay: 2000 },
+    { id: 's2', delay: 2350 },
+    { id: 's3', delay: 2700 },
+    { id: 's4', delay: 3050 },
+    { id: 'footer', delay: 3500 },
+  ];
+
+  const HOLD = 2500;
+  const FADEOUT = 500;
+  const PAUSE = 300;
+
+  function showAll() {
+    sequence.forEach(({ id, delay }) => {
+      setTimeout(() => {
+        document.getElementById(id).classList.add('visible');
+      }, delay);
+    });
+  }
+
+  function hideAll() {
+    sequence.forEach(({ id }) => {
+      document.getElementById(id).classList.remove('visible');
+    });
+  }
+
+  function run() {
+    hideAll();
+    showAll();
+    const lastDelay = sequence[sequence.length - 1].delay;
+    setTimeout(() => {
+      document.querySelector('.card').style.transition = `opacity ${FADEOUT}ms ease`;
+      document.querySelector('.card').style.opacity = '0';
+      setTimeout(() => {
+        document.querySelector('.card').style.transition = 'none';
+        document.querySelector('.card').style.opacity = '1';
+        setTimeout(run, PAUSE);
+      }, FADEOUT);
+    }, lastDelay + HOLD);
+  }
+
+  run();
+</script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    background: linear-gradient(135deg, #C0FFEE 0%, #F4B8A5 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    padding: clamp(12px, 3vw, 24px) clamp(16px, 6vw, 48px);
+  }
+
+  .pipeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .step {
+    width: 100%;
+    background: rgba(59, 33, 16, 0.05);
+    border: 1px solid rgba(59, 33, 16, 0.3);
+    border-radius: clamp(6px, 1.2vw, 12px);
+    padding: clamp(6px, 1.4vw, 12px) clamp(10px, 2.5vw, 20px);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .step.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .step-label {
+    font-size: clamp(8px, 1.3vw, 11px);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #1A7A5E;
+    margin-bottom: clamp(2px, 0.5vw, 5px);
+  }
+
+  .step-title {
+    font-size: clamp(11px, 2vw, 16px);
+    font-weight: 500;
+    color: #3B2110;
+    margin-bottom: clamp(3px, 0.7vw, 7px);
+  }
+
+  .step-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(3px, 0.7vw, 6px);
+  }
+
+  .tag {
+    font-size: clamp(9px, 1.3vw, 12px);
+    color: #3B2110;
+    background: rgba(59, 33, 16, 0.1);
+    border-radius: 20px;
+    padding: clamp(1px, 0.3vw, 3px) clamp(5px, 1.2vw, 10px);
+  }
+
+  .arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: clamp(14px, 2.8vw, 26px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .arrow.visible {
+    opacity: 1;
+  }
+
+  .arrow-line {
+    width: 1px;
+    background: rgba(59, 33, 16, 0.4);
+    flex: 1;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s ease;
+  }
+
+  .arrow.visible .arrow-line {
+    transform: scaleY(1);
+  }
+
+  .arrow-head {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 6px solid rgba(59, 33, 16, 0.4);
+    opacity: 0;
+    transition: opacity 0.2s ease 0.3s;
+  }
+
+  .arrow.visible .arrow-head {
+    opacity: 1;
+  }
+
+  .step-final {
+    border-color: #3B2110;
+    background: #3B2110;
+  }
+
+  .step-final .step-label {
+    color: #C0FFEE;
+  }
+
+  .step-final .step-title {
+    color: #F9F3E8;
+  }
+
+  .step-final .tag {
+    color: #F9F3E8;
+    background: rgba(249, 243, 232, 0.15);
+  }
+
+  .check {
+    display: inline-block;
+    margin-left: 6px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .step-final.visible .check {
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+<div class="pipeline">
+
+  <div class="step" id="s1">
+    <div class="step-label">Input</div>
+    <div class="step-title">📷 Coffee photo</div>
+    <div class="step-tags">
+      <span class="tag">packaging</span>
+      <span class="tag">label</span>
+    </div>
+  </div>
+
+  <div class="arrow" id="a1">
+    <div class="arrow-line"></div>
+    <div class="arrow-head"></div>
+  </div>
+
+  <div class="step" id="s2">
+    <div class="step-label">Claude Vision</div>
+    <div class="step-title">Visual analysis</div>
+    <div class="step-tags">
+      <span class="tag">origin</span>
+      <span class="tag">roast</span>
+      <span class="tag">tasting notes</span>
+      <span class="tag">variety</span>
+    </div>
+  </div>
+
+  <div class="arrow" id="a2">
+    <div class="arrow-line"></div>
+    <div class="arrow-head"></div>
+  </div>
+
+  <div class="step" id="s3">
+    <div class="step-label">Recipe engine</div>
+    <div class="step-title">Recipe generated</div>
+    <div class="step-tags">
+      <span class="tag">method</span>
+      <span class="tag">dose</span>
+      <span class="tag">temperature</span>
+      <span class="tag">grind</span>
+    </div>
+  </div>
+
+  <div class="arrow" id="a3">
+    <div class="arrow-line"></div>
+    <div class="arrow-head"></div>
+  </div>
+
+  <div class="step" id="s4">
+    <div class="step-label">Dial-in</div>
+    <div class="step-title">Barista feedback</div>
+    <div class="step-tags">
+      <span class="tag">actual brew time</span>
+      <span class="tag">taste</span>
+      <span class="tag">cup result</span>
+    </div>
+  </div>
+
+  <div class="arrow" id="a4">
+    <div class="arrow-line"></div>
+    <div class="arrow-head"></div>
+  </div>
+
+  <div class="step step-final" id="s5">
+    <div class="step-label">Output</div>
+    <div class="step-title">Calibrated recipe <span class="check">✓</span></div>
+    <div class="step-tags">
+      <span class="tag">adjusted grind</span>
+      <span class="tag">corrected temperature</span>
+      <span class="tag">saved</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const sequence = [
+    { el: 's1', delay: 0 },
+    { el: 'a1', delay: 800 },
+    { el: 's2', delay: 1400 },
+    { el: 'a2', delay: 2200 },
+    { el: 's3', delay: 2800 },
+    { el: 'a3', delay: 3600 },
+    { el: 's4', delay: 4200 },
+    { el: 'a4', delay: 5000 },
+    { el: 's5', delay: 5600 },
+  ];
+
+  const HOLD = 3000;
+  const FADEOUT = 600;
+  const PAUSE = 400;
+
+  function show(id) {
+    document.getElementById(id).classList.add('visible');
+  }
+
+  function hideAll() {
+    sequence.forEach(({ el }) => {
+      document.getElementById(el).classList.remove('visible');
+    });
+  }
+
+  function run() {
+    hideAll();
+    sequence.forEach(({ el, delay }) => {
+      setTimeout(() => show(el), delay);
+    });
+    setTimeout(() => {
+      document.querySelector('.pipeline').style.transition = `opacity ${FADEOUT}ms ease`;
+      document.querySelector('.pipeline').style.opacity = '0';
+      setTimeout(() => {
+        document.querySelector('.pipeline').style.transition = 'none';
+        document.querySelector('.pipeline').style.opacity = '1';
+        setTimeout(run, PAUSE);
+      }, FADEOUT);
+    }, 5600 + HOLD);
+  }
+
+  run();
+</script>
+</body>
+</html>

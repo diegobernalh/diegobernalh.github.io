@@ -22,7 +22,22 @@
   <meta charset="utf-8" />
   <meta name="description" content="Diego bernal is a colombian graphic & web designer living and working in Milano." />
   <meta name="author" content="diego bernal">
-  <link href="../CSS/style.css" rel="stylesheet" />
+  <link href="../css/style.css" rel="stylesheet" />
+  <script src="../js/script.js"></script>
+  <style>
+    .pipeline-frame { width: 100%; aspect-ratio: 3/2; display: block; }
+    @media (max-width: 1280px) { .pipeline-frame { aspect-ratio: 4/3; } }
+    @media (max-width: 800px)  { .pipeline-frame { aspect-ratio: auto; height: 560px; } }
+    @media (max-width: 480px)  { .pipeline-frame { height: 480px; } }
+
+    .flow-frame { width: 100%; aspect-ratio: 3/2; display: block; }
+    @media (max-width: 1280px) { .flow-frame { aspect-ratio: 4/3; } }
+    @media (max-width: 800px)  { .flow-frame { aspect-ratio: auto; height: 560px; } }
+    @media (max-width: 480px)  { .flow-frame { height: 480px; } }
+
+    .recipe-frame { width: 100%; aspect-ratio: 4/3; display: block; }
+    @media (max-width: 800px)  { .recipe-frame { aspect-ratio: auto; height: 480px; } }
+  </style>
 </head>
 
 <body>
@@ -31,69 +46,84 @@
       <a href="/index.html" class="logo">
         diego bernal 🦖
       </a>
-      <nav>
-        <p>
-          <a href="#">info</a> / <a href="mailto:diegobernalh@gmail.com">mail</a> / <a href="#">Va Bien</a>
-        </p>
-      </nav>
-      
-    </header>
+        <nav>
+          <a href="../info.html">info</a>
+          <span class="nav-sep"> / </span>
+          <a href="mailto:diegobernalh@gmail.com">mail</a>
+          <span class="nav-sep"> / </span>
+          <a href="#">Va Bien</a>
+        </nav>
+        <button class="hamburger" aria-label="Menu">
+          <span class="icon icon-burger">🍔</span>
+          <span class="icon icon-close">✕</span>
+        </button>
+      </header>
     
     <div class="project-conteiner">
       <div class="project-content">
         <div class="title-conteiner">
-          <h2>—PROJECT02</h2>
+          <h2>—VA BIEN SPECIALTY COFFEE</h2>
           <div class="arrow">
             <a href="./01.html"><img src="/img/left.svg"></a>
             <a href="./03.html"><img src="/img/right.svg"></a>
           </div>
         </div>
-          <h3>Website</h3>
+          <h3>AI Barista App <span class="chip">2026—present</span></h3>
         <p class="text">
-          a data-driven design firm in milan, italy, and new york city, accurat offers a variety of design services for its clients, creating high-end custom data visualizations and discovering correlations and trends in data pulled from its geospatial visual analysis platform. we want a super plain site using a minimal navigation system, bold gradients with the single monospace typeface akkurat mono. keeping the site completely static to ensure short download times. as a language we implemented jekyll to generate html pages and tachyons as a css framework.
+          Every new coffee bag means re-dialing your grind from scratch — no recipe survives a roast change. I built this app to fix that: a barista companion that learns from each brew session and adjusts its recommendations over time. Built end-to-end as a solo project — concept, UX/UI, Flutter frontend, Python/FastAPI backend, SQLite, deployed on Fly.dev. Currently in active development: the backend and AI flows are complete, visual design implementation is ongoing.
         </p>
-        <div><a href="#">accurat.it ↗</a></div>
+        <p class="text">
+          <strong>What it does:</strong><br>
+          The app runs Claude (Anthropic) across multiple AI flows: vision analysis to parse coffee bag metadata from photos, a recommendation engine that cross-references equipment profiles, user preferences, and historical brew data to generate method-specific recipes, and a dial-in calibration loop where you report actual brew time and taste result and the AI returns a fully adjusted recipe with corrected grind settings and temperature.
+        </p>
+        <p class="text">
+          <strong>How it works:</strong><br>
+          The system gets smarter over time — each saved recipe feeds back into future generations, so the AI anchors new recommendations to empirically validated parameters rather than starting from scratch. Tasting sessions, ratings, and adjustment notes are persisted in SQLite and used as context for subsequent AI calls.
+        </p>
+        <p class="text">
+          <strong>The hard part:</strong><br>
+          Designing the calibration prompt to respect brew physics — grind direction is always determined by brew time (shorter brew → finer grind → fewer clicks), while taste result adjusts temperature. Getting the AI to consistently follow that rule required iterative prompt engineering and explicit priority rules in the system prompt.
+        </p>
+        <p class="text">
+          <strong>Tech stack:</strong><br>Flutter (iOS/Android), Python/FastAPI, SQLite, Claude API (Anthropic), Fly.dev
+        </p>
+        <div><a href="#">vabien.co ↗</a></div>
       </div>
 
      <div class="project-img">
-        <img src="/img/prova.jpg" class="img-full">
-        <div class="img-conteiner">
-          <img src="/img/prova.jpg" class="img-half">
-          <img src="/img/prova.jpg" class="img-half">
+        <iframe src="../video/app-pipeline.html" frameborder="0" scrolling="no" class="pipeline-frame"></iframe>
+        <iframe src="../video/app-verdict.html" frameborder="0" scrolling="no" class="recipe-frame"></iframe>
+        <iframe src="../video/app-recipe.html" frameborder="0" scrolling="no" class="recipe-frame"></iframe>
+        <iframe src="../video/app-flow.html" frameborder="0" scrolling="no" class="flow-frame"></iframe>
+        <div class="img-conteiner" style="height: auto;">
+          <img src="/img/VaBien/vabien_01.jpg" class="img-half" style="height: auto; object-fit: contain;">
+          <img src="/img/VaBien/vabien_02.jpg" class="img-half" style="height: auto; object-fit: contain;">
         </div>
-        <img src="/img/prova.jpg" class="img-full">
-        <div class="img-conteiner">
-          <img src="/img/prova.jpg" class="img-half">
-          <img src="/img/prova.jpg" class="img-half">
+        <div class="img-conteiner" style="height: auto;">
+          <img src="/img/VaBien/vabien_03.jpg" class="img-half" style="height: auto; object-fit: contain;">
+          <img src="/img/VaBien/vabien_04.jpg" class="img-half" style="height: auto; object-fit: contain;">
         </div>
-        <img src="/img/prova.jpg" class="img-full">
-        <div class="img-conteiner">
-          <img src="/img/prova.jpg" class="img-half">
-          <img src="/img/prova.jpg" class="img-half">
-        </div>
-        <img src="/img/prova.jpg" class="img-full">
       </div>
    </div>
 
-
-
-
-
+  </main>
     <div class="footer">
       <div class="loop_wrap">
-        <div><a href="#">@diegobernaltite</a></div>
-        <div><a href="#">@diegobernaltite</a></div>
-        <div><a href="#">@diegobernaltite</a></div>
-        <div><a href="#">@diegobernaltite</a></div>
-        <div><a href="#">@diegobernaltite</a></div>
-        <div><a href="#">@diegobernaltite</a></div>
-        <div><a href="#">@diegobernaltite</a></div>
-        <div><a href="#">@diegobernaltite</a></div>
-        <div><a href="#">@diegobernaltite</a></div>
+        <div><a href="https://instagram.com/diegobernaltite">@diegobernaltite</a></div>
+        <div><a href="https://instagram.com/diegobernaltite">@diegobernaltite</a></div>
+        <div><a href="https://instagram.com/diegobernaltite">@diegobernaltite</a></div>
+        <div><a href="https://instagram.com/diegobernaltite">@diegobernaltite</a></div>
+        <div><a href="https://instagram.com/diegobernaltite">@diegobernaltite</a></div>
+        <div><a href="https://instagram.com/diegobernaltite">@diegobernaltite</a></div>
+        <div><a href="https://instagram.com/diegobernaltite">@diegobernaltite</a></div>
+        <div><a href="https://instagram.com/diegobernaltite">@diegobernaltite</a></div>
+        <div><a href="https://instagram.com/diegobernaltite">@diegobernaltite</a></div>
       </div>
     </div>
-
-  </main>
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close">✕</button>
+    <div class="lightbox-content"></div>
+  </div>
 </body>
 
 

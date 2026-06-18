@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; }
+
+  body {
+    background: linear-gradient(135deg, #C0FFEE 0%, #F4B8A5 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'SF Mono', 'Fira Code', 'Menlo', monospace;
+    padding: 7%;
+  }
+
+  .card {
+    background: #1A0F09;
+    border-radius: clamp(8px, 1.5vw, 14px);
+    width: 100%;
+    max-width: 480px;
+    padding: clamp(14px, 2.5vw, 24px) clamp(16px, 3vw, 26px);
+    box-shadow: 0 6px 40px rgba(20, 8, 2, 0.35);
+    overflow: hidden;
+  }
+
+  /* ── Header ── */
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: clamp(10px, 1.8vw, 16px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .card-header.visible { opacity: 1; }
+
+  .header-label {
+    font-size: clamp(8px, 1.2vw, 10px);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(192, 255, 238, 0.5);
+  }
+
+  .header-badge {
+    font-size: clamp(8px, 1.2vw, 10px);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #C0FFEE;
+    background: rgba(192, 255, 238, 0.12);
+    border: 1px solid rgba(192, 255, 238, 0.25);
+    border-radius: 20px;
+    padding: 2px clamp(7px, 1.2vw, 11px);
+  }
+
+  .divider {
+    height: 1px;
+    background: rgba(249, 243, 232, 0.08);
+    margin-bottom: clamp(10px, 1.8vw, 16px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .divider.visible { opacity: 1; }
+
+  /* ── Phase 1: recipe rows ── */
+  .phase-recipe { display: flex; flex-direction: column; gap: clamp(5px, 1vw, 8px); }
+
+  .r-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .r-row.visible { opacity: 1; transform: translateX(0); }
+
+  .r-key {
+    font-size: clamp(9px, 1.4vw, 11px);
+    color: rgba(249, 243, 232, 0.35);
+    letter-spacing: 0.06em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .r-val {
+    font-size: clamp(10px, 1.6vw, 13px);
+    color: #F4B8A5;
+    font-weight: 500;
+  }
+  .cursor {
+    display: inline-block;
+    width: 1px;
+    height: 0.85em;
+    background: #F4B8A5;
+    margin-left: 1px;
+    vertical-align: middle;
+    animation: blink 0.7s step-end infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  /* ── Phase 2: dial-in ── */
+  .phase-dialin {
+    display: none;
+    flex-direction: column;
+    gap: clamp(6px, 1.2vw, 10px);
+  }
+  .phase-dialin.active { display: flex; }
+
+  .d-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .d-row.visible { opacity: 1; transform: translateY(0); }
+
+  .d-key {
+    font-size: clamp(9px, 1.4vw, 11px);
+    color: rgba(249, 243, 232, 0.35);
+    letter-spacing: 0.06em;
+  }
+  .d-val {
+    font-size: clamp(10px, 1.6vw, 13px);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: clamp(5px, 0.9vw, 8px);
+  }
+
+  .tag-warn {
+    font-size: clamp(7px, 1.1vw, 9px);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #F4B8A5;
+    background: rgba(244, 184, 165, 0.15);
+    border-radius: 4px;
+    padding: 1px 5px;
+  }
+  .tag-ok {
+    font-size: clamp(7px, 1.1vw, 9px);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #C0FFEE;
+    background: rgba(192, 255, 238, 0.12);
+    border-radius: 4px;
+    padding: 1px 5px;
+  }
+
+  .arrow-row {
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    color: rgba(249, 243, 232, 0.2);
+    font-size: clamp(9px, 1.3vw, 11px);
+    letter-spacing: 0.04em;
+  }
+  .arrow-row.visible { opacity: 1; }
+
+  .val-warm { color: #F4B8A5; }
+  .val-mint { color: #C0FFEE; }
+  .val-dim  { color: rgba(249, 243, 232, 0.6); }
+</style>
+</head>
+<body>
+<div class="card" id="card">
+
+  <div class="card-header" id="hdr">
+    <span class="header-label" id="hdr-label">Generating recipe</span>
+    <span class="header-badge" id="hdr-badge">V60</span>
+  </div>
+  <div class="divider" id="div"></div>
+
+  <!-- Phase 1 -->
+  <div class="phase-recipe" id="phase1">
+    <div class="r-row" id="p1r1">
+      <span class="r-key">⚖ dose</span>
+      <span class="r-val" id="v1"></span>
+    </div>
+    <div class="r-row" id="p1r2">
+      <span class="r-key">💧 water</span>
+      <span class="r-val" id="v2"></span>
+    </div>
+    <div class="r-row" id="p1r3">
+      <span class="r-key">🌡 temp</span>
+      <span class="r-val" id="v3"></span>
+    </div>
+    <div class="r-row" id="p1r4">
+      <span class="r-key">⚙ grind</span>
+      <span class="r-val" id="v4"></span>
+    </div>
+    <div class="r-row" id="p1r5">
+      <span class="r-key">⏱ target</span>
+      <span class="r-val" id="v5"></span>
+    </div>
+  </div>
+
+  <!-- Phase 2 -->
+  <div class="phase-dialin" id="phase2">
+    <div class="d-row" id="d1">
+      <span class="d-key">brew time</span>
+      <span class="d-val val-warm">2:45 <span class="tag-warn">too fast</span></span>
+    </div>
+    <div class="arrow-row" id="da1">↓ &nbsp; adjusting grind</div>
+    <div class="d-row" id="d2">
+      <span class="d-key">grind</span>
+      <span class="d-val val-warm">C40 · 22 → <span class="val-mint">20 clicks</span></span>
+    </div>
+    <div class="arrow-row" id="da2">↓ &nbsp; recalculating</div>
+    <div class="d-row" id="d3">
+      <span class="d-key">new target</span>
+      <span class="d-val val-mint">3:05 – 3:25 <span class="tag-ok">dialed in</span></span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const vals = ['15 g', '250 ml', '93 °C', 'C40 · 22↓', '3:00 – 3:30'];
+  const ids  = ['v1','v2','v3','v4','v5'];
+  const rows = ['p1r1','p1r2','p1r3','p1r4','p1r5'];
+
+  function typeVal(elId, text, onDone) {
+    const el = document.getElementById(elId);
+    el.innerHTML = '<span class="cursor"></span>';
+    let i = 0;
+    const t = setInterval(() => {
+      el.innerHTML = text.slice(0, ++i) + '<span class="cursor"></span>';
+      if (i >= text.length) {
+        clearInterval(t);
+        el.innerHTML = text;
+        if (onDone) onDone();
+      }
+    }, 28);
+  }
+
+  function show(id) { document.getElementById(id)?.classList.add('visible'); }
+  function hide(id) { document.getElementById(id)?.classList.remove('visible'); }
+
+  const FADE = 380;
+  const PAUSE = 220;
+
+  function runPhase1(onDone) {
+    show('hdr'); show('div');
+    let delay = 0;
+    rows.forEach((rowId, i) => {
+      setTimeout(() => {
+        show(rowId);
+        setTimeout(() => typeVal(ids[i], vals[i], i === rows.length - 1 ? () => setTimeout(onDone, 600) : null), 80);
+      }, delay);
+      delay += 320;
+    });
+  }
+
+  function runPhase2(onDone) {
+    document.getElementById('phase1').style.display = 'none';
+    document.getElementById('phase2').classList.add('active');
+    document.getElementById('hdr-label').textContent = 'Dial-in';
+
+    const seq = [
+      { id: 'd1',  delay: 0 },
+      { id: 'da1', delay: 350 },
+      { id: 'd2',  delay: 600 },
+      { id: 'da2', delay: 950 },
+      { id: 'd3',  delay: 1200 },
+    ];
+    seq.forEach(({ id, delay }) => setTimeout(() => show(id), delay));
+    setTimeout(onDone, 1200 + 1400);
+  }
+
+  function reset() {
+    ['hdr','div','p1r1','p1r2','p1r3','p1r4','p1r5','d1','da1','d2','da2','d3'].forEach(hide);
+    document.getElementById('phase1').style.display = '';
+    document.getElementById('phase2').classList.remove('active');
+    document.getElementById('hdr-label').textContent = 'Generating recipe';
+    ids.forEach(id => { document.getElementById(id).innerHTML = ''; });
+  }
+
+  function run() {
+    reset();
+    runPhase1(() => {
+      const card = document.getElementById('card');
+      card.style.transition = `opacity ${FADE}ms ease`;
+      card.style.opacity = '0';
+      setTimeout(() => {
+        card.style.transition = 'none';
+        card.style.opacity = '1';
+        runPhase2(() => {
+          card.style.transition = `opacity ${FADE}ms ease`;
+          card.style.opacity = '0';
+          setTimeout(() => {
+            card.style.transition = 'none';
+            card.style.opacity = '1';
+            setTimeout(run, PAUSE);
+          }, FADE);
+        });
+      }, FADE);
+    });
+  }
+
+  run();
+</script>
+</body>
+</html>

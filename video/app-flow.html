@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; }
+
+  body {
+    background: linear-gradient(135deg, #C0FFEE 0%, #F4B8A5 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    overflow: hidden;
+    gap: 16px;
+  }
+
+  /* ── Phone shell ── */
+  .phone {
+    width: 31vh;
+    height: 65vh;
+    background: #F9F3E8;
+    border: 2px solid #3B2110;
+    border-radius: 5vh;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 8px 32px rgba(59,33,16,0.15);
+  }
+
+  .notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 11vh;
+    height: 2.2vh;
+    background: #3B2110;
+    border-radius: 0 0 1.4vh 1.4vh;
+    z-index: 10;
+  }
+
+  .home-bar {
+    position: absolute;
+    bottom: 0.8vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 9vh;
+    height: 0.5vh;
+    background: #3B2110;
+    border-radius: 10vh;
+    opacity: 0.3;
+    z-index: 10;
+  }
+
+  /* ── Screens ── */
+  .screen {
+    position: absolute;
+    inset: 0;
+    padding: 3vh 1.4vh 2.5vh;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7vh;
+    opacity: 0;
+    transition: opacity 0.55s ease;
+  }
+  .screen.active { opacity: 1; }
+
+  /* ── Status bar ── */
+  .status {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9vh;
+    color: rgba(59,33,16,0.4);
+    padding: 0 0.4vh;
+    flex-shrink: 0;
+  }
+
+  /* ── Screen elements ── */
+  .s-title {
+    font-size: 1.9vh;
+    font-weight: 700;
+    color: #3B2110;
+    padding: 0.4vh 0.4vh 0;
+    flex-shrink: 0;
+  }
+
+  .s-sub {
+    font-size: 1.1vh;
+    color: rgba(59,33,16,0.45);
+    padding: 0 0.4vh;
+    flex-shrink: 0;
+  }
+
+  .coffee-card {
+    background: white;
+    border: 1px solid rgba(59,33,16,0.12);
+    border-radius: 1.2vh;
+    padding: 0.9vh 1vh;
+    flex-shrink: 0;
+  }
+  .coffee-card-name {
+    font-size: 1.3vh;
+    font-weight: 600;
+    color: #3B2110;
+    margin-bottom: 0.4vh;
+  }
+  .chip-row { display: flex; gap: 0.4vh; flex-wrap: wrap; }
+  .chip {
+    font-size: 0.9vh;
+    background: rgba(192,255,238,0.6);
+    color: #3B2110;
+    border-radius: 10vh;
+    padding: 0.15vh 0.6vh;
+  }
+
+  .fab {
+    position: absolute;
+    bottom: 2.2vh;
+    right: 1.6vh;
+    width: 4.5vh;
+    height: 4.5vh;
+    background: #3B2110;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #C0FFEE;
+    font-size: 3vh;
+    font-weight: 200;
+    line-height: 1;
+  }
+
+  .viewfinder {
+    flex: 1;
+    border: 1.5px dashed rgba(59,33,16,0.3);
+    border-radius: 1.5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6vh;
+    color: rgba(59,33,16,0.3);
+    font-size: 1.1vh;
+    text-align: center;
+  }
+  .viewfinder-icon { font-size: 3.5vh; opacity: 0.4; }
+
+  .capture {
+    width: 6.5vh;
+    height: 6.5vh;
+    border-radius: 50%;
+    border: 2px solid #3B2110;
+    margin: 0.5vh auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .capture-inner {
+    width: 5vh;
+    height: 5vh;
+    border-radius: 50%;
+    background: #3B2110;
+  }
+
+  .profile-tags { display: flex; flex-wrap: wrap; gap: 0.4vh; padding: 0 0.4vh; }
+  .ptag {
+    background: rgba(59,33,16,0.08);
+    color: #3B2110;
+    border-radius: 10vh;
+    padding: 0.2vh 0.8vh;
+    font-size: 1vh;
+  }
+
+  .notes-box {
+    flex: 1;
+    padding: 0 0.4vh;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vh;
+  }
+  .notes-label {
+    font-size: 0.85vh;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(59,33,16,0.35);
+  }
+  .notes-text { font-size: 1.1vh; color: #3B2110; line-height: 1.4; }
+
+  .method-badge {
+    display: inline-block;
+    background: #3B2110;
+    color: #C0FFEE;
+    padding: 0.3vh 1.2vh;
+    border-radius: 10vh;
+    font-size: 1.1vh;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin: 0 0.4vh;
+  }
+
+  .param-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75vh 0.4vh;
+    border-bottom: 1px solid rgba(59,33,16,0.08);
+    font-size: 1.25vh;
+    flex-shrink: 0;
+  }
+  .p-label { color: rgba(59,33,16,0.45); }
+  .p-val { color: #3B2110; font-weight: 600; }
+
+  .brew-time {
+    text-align: center;
+    font-size: 5.5vh;
+    font-weight: 200;
+    color: #3B2110;
+    letter-spacing: 0.03em;
+    flex-shrink: 0;
+  }
+
+  .taste-row { display: flex; gap: 0.6vh; padding: 0 0.4vh; flex-shrink: 0; }
+  .taste-btn {
+    flex: 1;
+    padding: 0.8vh 0;
+    border: 1px solid rgba(59,33,16,0.25);
+    border-radius: 0.8vh;
+    text-align: center;
+    font-size: 1.05vh;
+    color: #3B2110;
+  }
+  .taste-btn.on { background: #3B2110; color: #C0FFEE; border-color: #3B2110; }
+
+  .check-big {
+    text-align: center;
+    font-size: 6.5vh;
+    color: #3B2110;
+    flex-shrink: 0;
+  }
+
+  .change-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(192,255,238,0.45);
+    border-radius: 0.8vh;
+    padding: 0.75vh 1vh;
+    font-size: 1.1vh;
+    color: #3B2110;
+    flex-shrink: 0;
+  }
+  .arrow-val { font-weight: 600; }
+
+  .s-btn {
+    background: #3B2110;
+    color: #F9F3E8;
+    border-radius: 1vh;
+    padding: 1.1vh;
+    text-align: center;
+    font-size: 1.2vh;
+    font-weight: 500;
+    margin-top: auto;
+    flex-shrink: 0;
+  }
+  .s-btn.mint { background: #C0FFEE; color: #3B2110; }
+
+  /* ── Label ── */
+  .label-area {
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .l-name {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #3B2110;
+    transition: opacity 0.3s;
+  }
+  .l-desc {
+    font-size: 11px;
+    color: rgba(59,33,16,0.55);
+    margin-top: 3px;
+    transition: opacity 0.3s;
+  }
+
+  /* ── Dots ── */
+  .dots { display: flex; gap: 6px; flex-shrink: 0; }
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(59,33,16,0.2);
+    transition: background 0.3s, transform 0.3s;
+  }
+  .dot.on { background: #3B2110; transform: scale(1.2); }
+</style>
+</head>
+<body>
+
+<div class="phone">
+  <div class="notch"></div>
+  <div class="home-bar"></div>
+
+  <!-- S1: Home -->
+  <div class="screen active" id="s1">
+    <div class="status"><span>9:41</span><span>●●●</span></div>
+    <div class="s-title">My Coffees</div>
+    <div class="coffee-card">
+      <div class="coffee-card-name">Finca La Palma</div>
+      <div class="chip-row"><span class="chip">V60</span><span class="chip">94°C</span><span class="chip">20g</span></div>
+    </div>
+    <div class="coffee-card">
+      <div class="coffee-card-name">Ninety Plus Kemgin</div>
+      <div class="chip-row"><span class="chip">Chemex</span><span class="chip">92°C</span><span class="chip">22g</span></div>
+    </div>
+    <div class="coffee-card" style="opacity:0.35;">
+      <div class="coffee-card-name">Colombia Huila</div>
+      <div class="chip-row"><span class="chip">Aeropress</span><span class="chip">88°C</span></div>
+    </div>
+    <div class="fab">+</div>
+  </div>
+
+  <!-- S2: Scan -->
+  <div class="screen" id="s2">
+    <div class="status"><span>9:41</span><span>●●●</span></div>
+    <div class="s-title">Scan Coffee</div>
+    <div class="viewfinder">
+      <div class="viewfinder-icon">📷</div>
+      Point at coffee bag
+    </div>
+    <div class="capture"><div class="capture-inner"></div></div>
+  </div>
+
+  <!-- S3: Coffee Profile -->
+  <div class="screen" id="s3">
+    <div class="status"><span>9:41</span><span>●●●</span></div>
+    <div class="s-title">Finca La Palma</div>
+    <div class="s-sub">Cofinet · Colombia</div>
+    <div class="profile-tags">
+      <span class="ptag">Light roast</span>
+      <span class="ptag">Washed</span>
+      <span class="ptag">1800m</span>
+    </div>
+    <div class="notes-box">
+      <div class="notes-label">Tasting notes</div>
+      <div class="notes-text">Red apple, jasmine,<br>brown sugar</div>
+    </div>
+    <div class="s-btn">Generate Recipe →</div>
+  </div>
+
+  <!-- S4: Recipe -->
+  <div class="screen" id="s4">
+    <div class="status"><span>9:41</span><span>●●●</span></div>
+    <div class="s-title">Recipe</div>
+    <div><span class="method-badge">V60</span></div>
+    <div class="param-row"><span class="p-label">Dose</span><span class="p-val">20g</span></div>
+    <div class="param-row"><span class="p-label">Water</span><span class="p-val">320g</span></div>
+    <div class="param-row"><span class="p-label">Temp</span><span class="p-val">94°C</span></div>
+    <div class="param-row"><span class="p-label">Grind</span><span class="p-val">24 clicks</span></div>
+    <div class="param-row" style="border:none"><span class="p-label">Ratio</span><span class="p-val">1:16</span></div>
+    <div class="s-btn">Start Brewing</div>
+  </div>
+
+  <!-- S5: Dial-in -->
+  <div class="screen" id="s5">
+    <div class="status"><span>9:41</span><span>●●●</span></div>
+    <div class="s-title">Dial-in</div>
+    <div class="s-sub">Actual brew time</div>
+    <div class="brew-time">3:45</div>
+    <div class="s-sub" style="text-align:center;">How does it taste?</div>
+    <div class="taste-row">
+      <div class="taste-btn">Sour</div>
+      <div class="taste-btn on">Balanced</div>
+      <div class="taste-btn">Bitter</div>
+    </div>
+    <div class="s-btn" style="margin-top:0.8vh;">Submit →</div>
+  </div>
+
+  <!-- S6: Calibrated -->
+  <div class="screen" id="s6">
+    <div class="status"><span>9:41</span><span>●●●</span></div>
+    <div class="s-title">Calibrated</div>
+    <div class="check-big">✓</div>
+    <div class="change-row"><span>Grind</span><span class="arrow-val">24 → 22 clicks</span></div>
+    <div style="height:0.6vh; flex-shrink:0;"></div>
+    <div class="change-row"><span>Temp</span><span class="arrow-val">94 → 95°C</span></div>
+    <div class="s-btn mint" style="margin-top:1vh;">Save Recipe</div>
+  </div>
+</div>
+
+<div class="label-area">
+  <div class="l-name" id="lname">Home</div>
+  <div class="l-desc" id="ldesc">Browse your coffee collection</div>
+</div>
+
+<div class="dots">
+  <div class="dot on" id="d0"></div>
+  <div class="dot" id="d1"></div>
+  <div class="dot" id="d2"></div>
+  <div class="dot" id="d3"></div>
+  <div class="dot" id="d4"></div>
+  <div class="dot" id="d5"></div>
+</div>
+
+<script>
+  const steps = [
+    { screen: 's1', dot: 'd0', name: 'Home',           desc: 'Browse your coffee collection' },
+    { screen: 's2', dot: 'd1', name: 'Scan',           desc: 'Photograph the coffee bag' },
+    { screen: 's3', dot: 'd2', name: 'Coffee Profile', desc: 'AI extracts origin, roast & tasting notes' },
+    { screen: 's4', dot: 'd3', name: 'Recipe',         desc: 'AI generates method-specific parameters' },
+    { screen: 's5', dot: 'd4', name: 'Dial-in',        desc: 'Report brew time and taste result' },
+    { screen: 's6', dot: 'd5', name: 'Calibrated',     desc: 'AI adjusts grind and temperature' },
+  ];
+
+  let cur = 0;
+
+  function goTo(i) {
+    document.getElementById(steps[cur].screen).classList.remove('active');
+    document.getElementById(steps[cur].dot).classList.remove('on');
+    cur = i;
+    document.getElementById(steps[cur].screen).classList.add('active');
+    document.getElementById(steps[cur].dot).classList.add('on');
+    document.getElementById('lname').textContent = steps[cur].name;
+    document.getElementById('ldesc').textContent = steps[cur].desc;
+  }
+
+  setInterval(() => goTo((cur + 1) % steps.length), 2800);
+</script>
+</body>
+</html>

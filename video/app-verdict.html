@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    background: linear-gradient(135deg, #C0FFEE 0%, #F4B8A5 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    padding: clamp(12px, 3vw, 32px);
+    gap: clamp(10px, 1.5vw, 16px);
+  }
+
+  .scene-wrap {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(6px, 1vw, 10px);
+  }
+
+  .scene-label {
+    font-size: clamp(11px, 1.5vw, 14px);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(59, 33, 16, 0.45);
+  }
+
+  .card {
+    background: #F9F3E8;
+    border-radius: clamp(10px, 1.5vw, 16px);
+    width: 100%;
+    padding: clamp(16px, 3vw, 28px);
+    box-shadow: 0 4px 32px rgba(59, 33, 16, 0.12);
+    border: 1px solid rgba(59, 33, 16, 0.08);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: clamp(14px, 2.2vw, 22px);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+
+  .card-header.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .coffee-name {
+    font-size: clamp(12px, 2vw, 16px);
+    font-weight: 600;
+    color: #3B2110;
+    line-height: 1.2;
+  }
+
+  .coffee-meta {
+    font-size: clamp(9px, 1.3vw, 11px);
+    color: rgba(59, 33, 16, 0.5);
+    margin-top: 3px;
+    letter-spacing: 0.04em;
+  }
+
+  .scan-label {
+    font-size: clamp(8px, 1.1vw, 10px);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(59, 33, 16, 0.4);
+    background: rgba(59, 33, 16, 0.07);
+    border-radius: 20px;
+    padding: clamp(2px, 0.4vw, 4px) clamp(8px, 1.2vw, 12px);
+    white-space: nowrap;
+  }
+
+  .section-label {
+    font-size: clamp(8px, 1.1vw, 10px);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(59, 33, 16, 0.4);
+    margin-bottom: clamp(6px, 1vw, 9px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .section-label.visible { opacity: 1; }
+
+  .notes-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(4px, 0.8vw, 7px);
+    margin-bottom: clamp(14px, 2.2vw, 20px);
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+
+  .notes-row.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .note-tag {
+    font-size: clamp(10px, 1.5vw, 13px);
+    color: #3B2110;
+    background: rgba(59, 33, 16, 0.08);
+    border-radius: 20px;
+    padding: clamp(2px, 0.4vw, 5px) clamp(8px, 1.3vw, 13px);
+  }
+
+  .meta-rows {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(5px, 0.9vw, 8px);
+    margin-bottom: clamp(14px, 2.2vw, 22px);
+  }
+
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .meta-row.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .meta-key {
+    font-size: clamp(9px, 1.3vw, 11px);
+    color: rgba(59, 33, 16, 0.45);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .meta-val {
+    font-size: clamp(10px, 1.5vw, 13px);
+    font-weight: 500;
+    color: #3B2110;
+  }
+
+  .freshness-bar-wrap {
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    margin-bottom: clamp(14px, 2.2vw, 22px);
+  }
+
+  .freshness-bar-wrap.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .freshness-track {
+    height: 4px;
+    background: rgba(59, 33, 16, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+
+  .freshness-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #1A7A5E, #C0FFEE);
+    border-radius: 4px;
+    transition: width 0.7s ease;
+  }
+
+  .freshness-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+  }
+
+  .freshness-labels span {
+    font-size: clamp(8px, 1vw, 9px);
+    color: rgba(59, 33, 16, 0.35);
+  }
+
+  .divider {
+    height: 1px;
+    background: rgba(59, 33, 16, 0.1);
+    margin-bottom: clamp(14px, 2.2vw, 22px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .divider.visible { opacity: 1; }
+
+  .thinking {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    margin-bottom: clamp(12px, 2vw, 18px);
+  }
+
+  .thinking.visible { opacity: 1; }
+
+  .thinking span {
+    font-size: clamp(8px, 1.1vw, 10px);
+    color: rgba(59, 33, 16, 0.4);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .dot {
+    width: 4px;
+    height: 4px;
+    background: rgba(59, 33, 16, 0.35);
+    border-radius: 50%;
+    animation: pulse 1.2s ease-in-out infinite;
+  }
+
+  .dot:nth-child(2) { animation-delay: 0.2s; }
+  .dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes pulse {
+    0%, 80%, 100% { transform: scale(0.7); opacity: 0.4; }
+    40% { transform: scale(1); opacity: 1; }
+  }
+
+  .verdict-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .verdict-row.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .verdict-label {
+    font-size: clamp(9px, 1.3vw, 11px);
+    color: rgba(59, 33, 16, 0.45);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .verdict-chip {
+    display: flex;
+    align-items: center;
+    gap: clamp(5px, 0.9vw, 8px);
+    background: rgba(26, 122, 94, 0.1);
+    border: 1.5px solid rgba(26, 122, 94, 0.4);
+    border-radius: 24px;
+    padding: clamp(4px, 0.7vw, 7px) clamp(12px, 2vw, 18px);
+    transform: scale(0.92);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .verdict-row.visible .verdict-chip {
+    transform: scale(1);
+  }
+
+  .verdict-emoji {
+    font-size: clamp(14px, 2.2vw, 18px);
+  }
+
+  .verdict-text {
+    font-size: clamp(11px, 1.8vw, 15px);
+    font-weight: 600;
+    color: #1A7A5E;
+    letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+<div class="scene-wrap">
+<div class="scene-label">Coffee analysis</div>
+<div class="card">
+
+  <div class="card-header" id="header">
+    <div>
+      <div class="coffee-name">Yirgacheffe Natural</div>
+      <div class="coffee-meta">Kochere, Ethiopia · Light roast</div>
+    </div>
+    <div class="scan-label">📷 Scanned</div>
+  </div>
+
+  <div class="section-label" id="label-notes">Tasting notes</div>
+  <div class="notes-row" id="notes">
+    <span class="note-tag">Blueberry</span>
+    <span class="note-tag">Jasmine</span>
+    <span class="note-tag">Brown sugar</span>
+    <span class="note-tag">Bright acidity</span>
+  </div>
+
+  <div class="meta-rows">
+    <div class="meta-row" id="m1">
+      <span class="meta-key">Process</span>
+      <span class="meta-val">Natural</span>
+    </div>
+    <div class="meta-row" id="m2">
+      <span class="meta-key">Variety</span>
+      <span class="meta-val">Heirloom</span>
+    </div>
+    <div class="meta-row" id="m3">
+      <span class="meta-key">Altitude</span>
+      <span class="meta-val">1,800 – 2,200 masl</span>
+    </div>
+  </div>
+
+  <div class="freshness-bar-wrap" id="freshness">
+    <div class="section-label" style="opacity:1; margin-bottom: 6px;">Freshness · roasted 12 days ago</div>
+    <div class="freshness-track">
+      <div class="freshness-fill" id="freshness-fill"></div>
+    </div>
+    <div class="freshness-labels">
+      <span>Too fresh</span>
+      <span>Peak window</span>
+      <span>Past peak</span>
+    </div>
+  </div>
+
+  <div class="divider" id="div1"></div>
+
+  <div class="thinking" id="thinking">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <span>Analyzing</span>
+  </div>
+
+  <div class="verdict-row" id="verdict">
+    <span class="verdict-label">Verdict</span>
+    <div class="verdict-chip">
+      <span class="verdict-emoji">✅</span>
+      <span class="verdict-text">Buy it</span>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+  const steps = [
+    { id: 'header',       delay: 150 },
+    { id: 'label-notes',  delay: 600 },
+    { id: 'notes',        delay: 850 },
+    { id: 'm1',           delay: 1300 },
+    { id: 'm2',           delay: 1550 },
+    { id: 'm3',           delay: 1800 },
+    { id: 'freshness',    delay: 2100 },
+    { id: 'div1',         delay: 2600 },
+    { id: 'thinking',     delay: 2800 },
+    { id: 'verdict',      delay: 3800 },
+  ];
+
+  const HOLD = 2800;
+  const FADEOUT = 500;
+  const PAUSE = 300;
+
+  function show(id) {
+    document.getElementById(id).classList.add('visible');
+    if (id === 'freshness') {
+      setTimeout(() => {
+        document.getElementById('freshness-fill').style.width = '62%';
+      }, 100);
+    }
+    if (id === 'thinking') {
+      setTimeout(() => {
+        document.getElementById('thinking').classList.remove('visible');
+      }, 900);
+    }
+  }
+
+  function hideAll() {
+    steps.forEach(({ id }) => {
+      document.getElementById(id).classList.remove('visible');
+    });
+    document.getElementById('freshness-fill').style.width = '0%';
+    document.getElementById('freshness-fill').style.transition = 'none';
+    setTimeout(() => {
+      document.getElementById('freshness-fill').style.transition = 'width 0.7s ease';
+    }, 50);
+  }
+
+  function run() {
+    hideAll();
+    steps.forEach(({ id, delay }) => {
+      setTimeout(() => show(id), delay);
+    });
+    const lastDelay = steps[steps.length - 1].delay;
+    setTimeout(() => {
+      document.querySelector('.card').style.transition = `opacity ${FADEOUT}ms ease`;
+      document.querySelector('.card').style.opacity = '0';
+      setTimeout(() => {
+        document.querySelector('.card').style.transition = 'none';
+        document.querySelector('.card').style.opacity = '1';
+        setTimeout(run, PAUSE);
+      }, FADEOUT);
+    }, lastDelay + HOLD);
+  }
+
+  run();
+</script>
+</body>
+</html>

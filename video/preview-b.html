@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; }
+
+  body {
+    background: #0F0A07;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  }
+
+  .stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .word {
+    position: absolute;
+    font-size: clamp(36px, 10vw, 72px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .word.mint  { color: #C0FFEE; }
+  .word.pink  { color: #F4B8A5; }
+  .word.cream { color: #F9F3E8; }
+
+  .word.active {
+    animation: wordIn 0.35s cubic-bezier(0.2, 0, 0, 1) forwards;
+  }
+  .word.out {
+    animation: wordOut 0.25s ease-in forwards;
+  }
+
+  @keyframes wordIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes wordOut {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to   { opacity: 0; transform: translateY(-16px) scale(0.96); }
+  }
+
+  .sub {
+    position: absolute;
+    bottom: clamp(18px, 3.5vw, 32px);
+    font-size: clamp(9px, 1.4vw, 12px);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(249, 243, 232, 0.25);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .label-b {
+    position: fixed;
+    bottom: clamp(10px, 2vw, 18px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(9px, 1.3vw, 11px);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(249, 243, 232, 0.2);
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="word mint"  id="w1">SCAN</div>
+  <div class="word pink"  id="w2">RECIPE</div>
+  <div class="word cream" id="w3">DIAL-IN</div>
+  <div class="word mint"  id="w4">AI BARISTA</div>
+  <div class="sub" id="sub">Va Bien · specialty coffee</div>
+</div>
+<div class="label-b">B — Cinético</div>
+
+<script>
+  const words = ['w1','w2','w3','w4'];
+  const SHOW = 600, GAP = 180, HOLD = 1200, FADE = 500, PAUSE = 300;
+
+  function show(id) {
+    const el = document.getElementById(id);
+    el.classList.remove('out');
+    el.classList.add('active');
+  }
+
+  function hide(id) {
+    const el = document.getElementById(id);
+    el.classList.remove('active');
+    el.classList.add('out');
+    setTimeout(() => el.classList.remove('out'), 300);
+  }
+
+  function run() {
+    document.getElementById('sub').style.opacity = '0';
+    words.forEach(id => { hide(id); });
+
+    let t = 200;
+    words.slice(0, 3).forEach((id, i) => {
+      setTimeout(() => show(id), t);
+      setTimeout(() => hide(id), t + SHOW);
+      t += SHOW + GAP;
+    });
+
+    // final word + sub
+    setTimeout(() => {
+      show('w4');
+      document.getElementById('sub').style.opacity = '1';
+    }, t);
+
+    setTimeout(() => {
+      document.getElementById('sub').style.opacity = '0';
+      hide('w4');
+      setTimeout(run, PAUSE);
+    }, t + HOLD);
+  }
+
+  run();
+</script>
+</body>
+</html>
