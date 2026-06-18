@@ -13,21 +13,23 @@
                       \_/__/                                         \_/__/        -->
 
   <head>
-    <title>🌭</title>
+    <title>Diego Bernal</title>
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <meta charset="utf-8" />
-    <meta name="description"
-      content="Diego bernal is a colombian graphic & web designer living and working in Milano." />
     <meta name="author" content="diego bernal">
     <link href="css/style.css" rel="stylesheet" />
     <style>
-      main { width: 100%; }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 40px;
+      }
       .coming-soon-wrap {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        min-height: calc(100vh - 80px);
-        padding-bottom: 80px;
+        gap: 20px;
       }
       .coming-soon-wrap h1 {
         margin: 0;
@@ -35,29 +37,15 @@
       .coming-soon-note {
         font-size: var(--font-size-s);
         color: var(--color-secondary);
-        margin-top: var(--gap-s);
       }
     </style>
   </head>
 
   <body>
-    <main>
-      <header>
-        <a href="/index.html" class="logo">
-          diego bernal 🦖
-        </a>
-        <nav>
-          <a href="/info.html">info</a>
-          <span class="nav-sep"> / </span>
-          <a href="mailto:diegobernalh@gmail.com">mail</a>
-        </nav>
-      </header>
-
-      <div class="coming-soon-wrap">
-        <h1>coming soon.</h1>
-        <p class="coming-soon-note">portfolio under construction — check back soon.</p>
-      </div>
-    </main>
+    <div class="coming-soon-wrap">
+      <h1>coming soon.</h1>
+      <p class="coming-soon-note">portfolio under construction — check back soon.</p>
+    </div>
   </body>
 
 </html>
