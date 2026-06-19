@@ -1,40 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
+<!- 
+ 
+ /\ \  __                               /\ \                 __                    
+ \_\ \/\_\     __     __     ___        \_\ \     __    ____/\_\     __     ___    
+ /'_` \/\ \  /'__`\ /'_ `\  / __`\      /'_` \  /'__`\ /',__\/\ \  /'_ `\ /' _ `\  
+/\ \L\ \ \ \/\  __//\ \L\ \/\ \L\ \    /\ \L\ \/\  __//\__, `\ \ \/\ \L\ \/\ \/\ \ 
+\ \___,_\ \_\ \____\ \____ \ \____/    \ \___,_\ \____\/\____/\ \_\ \____ \ \_\ \_\
+ \/__,_ /\/_/\/____/\/___L\ \/___/      \/__,_ /\/____/\/___/  \/_/\/___L\ \/_/\/_/
+                      /\____/                                        /\____/       
+                      \_/__/                                         \_/__/        -->
+
+
+
   <head>
-    <title>Diego Bernal</title>
+    <title>🌭</title>
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <meta charset="utf-8" />
+    <meta name="description"
+      content="Diego bernal is a colombian graphic & web designer living and working in Milano." />
     <meta name="author" content="diego bernal">
     <link href="css/style.css" rel="stylesheet" />
-    <style>
-      body {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        padding: 40px;
-      }
-      .coming-soon-wrap {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-      .coming-soon-wrap h1 {
-        margin: 0;
-      }
-      .coming-soon-note {
-        font-size: var(--font-size-s);
-        color: var(--color-secondary);
-      }
-    </style>
+    <script src="./js/script.js"></script>
   </head>
 
   <body>
-    <div class="coming-soon-wrap">
-      <h1>coming soon.</h1>
-      <p class="coming-soon-note">portfolio under construction — check back soon.</p>
+    <main>
+      <header>
+        <a href="/index.html" class="logo">
+          diego bernal 🦖
+        </a>
+        <nav>
+          <a href="/info.html">info</a>
+          <span class="nav-sep"> / </span>
+          <a href="mailto:diegobernalh@gmail.com">mail</a>
+          <span class="nav-sep"> / </span>
+          <a href="#">Va Bien</a>
+        </nav>
+        <button class="hamburger" aria-label="Menu">
+          <span class="icon icon-burger">🍔</span>
+          <span class="icon icon-close">✕</span>
+        </button>
+      </header>
+
+      <h1>I'm a Colombian designer based in Milano with over 10 years crafting digital products. I live in the space between UX/UI and front-end — close enough to the problem to understand it, close enough to the pixel to obsess over it.
+      </h1>
+
+      <div class="image-wrapper">
+        <video autoplay loop muted playsinline></video>
+      </div>
+      
+
+
+      <div class="home-table">
+
+        <div class="grid-container grid-container__header">
+          <div class="grid-item">Project</div>
+          <div class="grid-item">Client</div>
+          <div class="grid-item">Discipline</div>
+          <div class="grid-item">Year</div>
+        </div>
+
+        <a data-gif="video/vabien.mp4" class="grid-container image-wrapper__link" href="./projects/01.html">
+          <div class="grid-item">Visual Identity</div>
+          <div class="grid-item">Va Bien specialty coffee</div>
+          <div class="grid-item">graphic design</div>
+          <div class="grid-item">2026—present</div>
+        </a>
+
+        <a data-gif="video/vabien_app_new.mp4" class="grid-container image-wrapper__link" href="./projects/02.html">
+          <div class="grid-item">AI Barista App</div>
+          <div class="grid-item">Va Bien specialty coffee</div>
+          <div class="grid-item">graphic & app design</div>
+          <div class="grid-item">2026—present</div>
+        </a>
+
+        <a class="grid-container image-wrapper__link" href="./projects/03.html">
+          <div class="grid-item">Digital Asset Model</div>
+          <div class="grid-item">SNAM—ACR</div>
+          <div class="grid-item">app design</div>
+          <div class="grid-item">2020—present</div>
+        </a>
+
+        <a id="accurat-row" data-gif="video/accurat.mp4" class="grid-container image-wrapper__link" href="./projects/04.html">
+          <div class="grid-item">Accurat Web</div>
+          <div class="grid-item">Accurat</div>
+          <div class="grid-item">web & front-end</div>
+          <div class="grid-item">2018</div>
+        </a>
+
+        <a class="grid-container image-wrapper__link" href="./projects/05.html">
+          <div class="grid-item">Telediagnosis platform</div>
+          <div class="grid-item">SNAM—ACR</div>
+          <div class="grid-item">app design</div>
+          <div class="grid-item">2020—present</div>
+        </a>
+
+        <a id="essilor-row" data-gif="video/luxottica.mp4" class="grid-container image-wrapper__link" href="./projects/06.html">
+          <div class="grid-item">Brand Guidelines — Worldwide</div>
+          <div class="grid-item">EssilorLuxottica</div>
+          <div class="grid-item">graphic design</div>
+          <div class="grid-item">2018</div>
+        </a>
+      </div>
+
+
+
+
+
+    </main>
+    <div class="footer">
+      <div class="loop_wrap">
+        <div><a href="https://instagram.com/diegobernaltite">@diegobernaltite</a></div>
+        <div><a href="https://instagram.com/diegobernaltite">@diegobernaltite</a></div>
+        <div><a href="https://instagram.com/diegobernaltite">@diegobernaltite</a></div>
+        <div><a href="https://instagram.com/diegobernaltite">@diegobernaltite</a></div>
+        <div><a href="https://instagram.com/diegobernaltite">@diegobernaltite</a></div>
+        <div><a href="https://instagram.com/diegobernaltite">@diegobernaltite</a></div>
+        <div><a href="https://instagram.com/diegobernaltite">@diegobernaltite</a></div>
+        <div><a href="https://instagram.com/diegobernaltite">@diegobernaltite</a></div>
+        <div><a href="https://instagram.com/diegobernaltite">@diegobernaltite</a></div>
+      </div>
     </div>
   </body>
+
 
 </html>
