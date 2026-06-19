@@ -56,15 +56,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const wrappedImages = document.querySelectorAll(".project-img-wrapper img");
 
-    function openLightbox(clickedImg) {
+    // iframes: wrap before building the all-items list
+    document.querySelectorAll(".project-img iframe").forEach(iframe => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "project-iframe-wrapper";
+      iframe.parentNode.insertBefore(wrapper, iframe);
+      wrapper.appendChild(iframe);
+
+      const overlay = document.createElement("div");
+      overlay.className = "iframe-click-overlay";
+      wrapper.appendChild(overlay);
+    });
+
+    function getAllItems() {
+      return [...document.querySelectorAll(".project-img-wrapper img, .project-iframe-wrapper iframe")];
+    }
+
+    function openLightbox(clickedEl) {
       content.innerHTML = "";
       const isMobile = window.innerWidth <= 800;
-      const images = isMobile ? [clickedImg] : wrappedImages;
-      images.forEach((img) => {
-        const clone = document.createElement("img");
-        clone.src = img.src;
-        clone.alt = img.alt || "";
-        content.appendChild(clone);
+      const items = isMobile ? [clickedEl] : getAllItems();
+      items.forEach(el => {
+        if (el.tagName === "IFRAME") {
+          const clone = document.createElement("iframe");
+          clone.src = el.src;
+          clone.frameBorder = "0";
+          clone.scrolling = "no";
+          clone.className = "lightbox-iframe";
+          const rect = el.getBoundingClientRect();
+          if (rect.height > 0) clone.style.aspectRatio = `${rect.width / rect.height}`;
+          content.appendChild(clone);
+        } else {
+          const clone = document.createElement("img");
+          clone.src = el.src;
+          clone.alt = el.alt || "";
+          content.appendChild(clone);
+        }
       });
       lightbox.classList.add("active");
       document.body.style.overflow = "hidden";
@@ -75,8 +102,13 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.style.overflow = "";
     }
 
-    wrappedImages.forEach((img) => {
+    wrappedImages.forEach(img => {
       img.addEventListener("click", () => openLightbox(img));
+    });
+
+    document.querySelectorAll(".iframe-click-overlay").forEach(overlay => {
+      const iframe = overlay.parentElement.querySelector("iframe");
+      overlay.addEventListener("click", () => openLightbox(iframe));
     });
 
     lightbox.querySelector(".lightbox-close").addEventListener("click", closeLightbox);
