@@ -82,6 +82,8 @@ h3 {
 .project-content h3 {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: var(--gap-xs);
 }
 
 .project-content .text {
@@ -284,7 +286,6 @@ nav {
   height: 22px;
   font-size: var(--font-size-xs);
   color: var(--color-secondary);
-  margin-left: var(--gap-s);
   line-height: 1;
   box-sizing: border-box;
 }
@@ -371,6 +372,8 @@ nav {
 
 .arrow {
   padding: 3px var(--gap-xs);
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 .arrow a:first-of-type{
   margin-right: var(--gap-s);
@@ -667,6 +670,71 @@ img.show {
 
 .lightbox-content > * + * {
   margin-top: 2rem;
+}
+
+.lightbox-content .screen-wrap {
+  max-width: 96%;
+  width: 100%;
+  display: block;
+}
+
+.lightbox-content .screen-wrap img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Browser mockup */
+.screen-wrap {
+  background: #F0F0F0;
+  padding: 40px;
+}
+
+.img-conteiner .screen-wrap {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.browser-frame {
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  width: 100%;
+}
+
+.browser-bar {
+  background: #D8D8D8;
+  padding: 6px 8px;
+  display: flex;
+  align-items: center;
+}
+
+.browser-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.browser-dots span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  border: none;
+  background: #F6F6F6;
+}
+
+.browser-content {
+  display: block;
+  line-height: 0;
+}
+
+.browser-content img,
+.browser-content iframe {
+  display: block;
+  width: 100%;
 }
 
 @media (max-width: 425px) {

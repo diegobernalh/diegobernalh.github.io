@@ -87,10 +87,16 @@ document.addEventListener("DOMContentLoaded", () => {
           if (rect.height > 0) clone.style.aspectRatio = `${rect.width / rect.height}`;
           content.appendChild(clone);
         } else {
-          const clone = document.createElement("img");
-          clone.src = el.src;
-          clone.alt = el.alt || "";
-          content.appendChild(clone);
+          const screenWrap = el.closest('.screen-wrap');
+          if (screenWrap) {
+            const clone = screenWrap.cloneNode(true);
+            content.appendChild(clone);
+          } else {
+            const clone = document.createElement("img");
+            clone.src = el.src;
+            clone.alt = el.alt || "";
+            content.appendChild(clone);
+          }
         }
       });
       lightbox.classList.add("active");
