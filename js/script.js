@@ -105,7 +105,9 @@ document.addEventListener("DOMContentLoaded", () => {
           if (screenWrap) {
             const clone = screenWrap.cloneNode(true);
             const clonedVideo = clone.querySelector("video");
-            if (clonedVideo) { clonedVideo.controls = true; clonedVideo.autoplay = false; }
+            if (clonedVideo) { clonedVideo.controls = false; clonedVideo.autoplay = true; clonedVideo.loop = true; clonedVideo.muted = true; }
+            const clonedOverlay = clone.querySelector('.video-click-overlay');
+            if (clonedOverlay) clonedOverlay.remove();
             content.appendChild(clone);
           } else {
             const clone = document.createElement("video");
