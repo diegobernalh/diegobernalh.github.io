@@ -54,21 +54,21 @@
             <a href="./04.html"><img src="/img/right.svg"></a>
           </div>
         </div>
-          <h3>UX/UI & App Design — SNAM / ACR <span class="chip">2020—present</span></h3>
+          <h3>UX/UI & App Design — SNAM / ACR <span class="chip">2022—present</span></h3>
         <p class="text">
-          Design support for a complex data-driven interface used to monitor and manage large-scale infrastructure across a national energy network. The platform organizes real-time and historical data for each physical asset — stations, compressors, sensors — into a unified, user-friendly experience.
+          Design for the Digital Asset Model (DAM) — a feature within ACR (Asset Control Room), Snam's internal platform for monitoring and managing Italy's national gas network. DAM integrates BIM 3D models of physical infrastructure — compressor stations, pipelines, reduction plants — directly into the platform, giving operators and maintenance engineers a digital twin they can query and navigate in real time.
         </p>
         <p class="text">
           <strong>What it does:</strong><br>
-          Enables operators and maintenance planners to visualize and interact with a Digital Asset Model — a structured representation of every physical asset in the network, its status, relationships, and performance over time.
+          The experience is split into two layers. A 2D homepage provides access to the full asset hierarchy, letting users browse and filter across the network. From there, a 3D scene opens — rendered in the browser via JavaScript — where users navigate with WASD controls, select objects parametrically, and inspect individual components. Each object surfaces two data streams: cold data (static metadata, BIM attributes, SAP records) and hot data (live sensor readings from connected systems). Users can save custom view templates to configure their workspace for recurring tasks.
         </p>
         <p class="text">
           <strong>Design focus:</strong><br>
-          Structuring asset hierarchies for intuitive navigation. Developing clear visual indicators for status, alerts, and performance metrics. Ensuring consistency across components within the Asset Control Room ecosystem.
+          Translating industrial-grade data into a navigable interface without losing precision. Structuring the asset hierarchy for both spatial (3D scene) and logical (tree view) navigation. Designing metadata panels that adapt to different object types and data depths. Defining consistent patterns across a large, multi-team codebase that spans functional, frontend, backend, and design workstreams — and has been in active development for over two years.
         </p>
         <p class="text">
           <strong>The challenge:</strong><br>
-          Serving multiple user types — from control room operators who need at-a-glance clarity to maintenance planners who need depth — without compromising either. Industrial data at this scale has no room for ambiguity.
+          Before any design work could stabilise, three parallel POCs ran simultaneously — Unity, Unreal, and JavaScript — each with different rendering capabilities, performance profiles, and integration constraints. Design had to remain technically portable while still advancing UX decisions that would carry forward regardless of the final stack. JavaScript/React was ultimately chosen for its compatibility with the existing ACR frontend, lower infrastructure costs, and mobile viability. The tradeoff was rendering quality — a constraint that shaped every visual decision that followed.
         </p>
       </div>
 
@@ -112,6 +112,16 @@
             </div>
             <div class="browser-content">
               <img src="/img/prova.jpg" class="img-full">
+            </div>
+          </div>
+        </div>
+        <div class="screen-wrap">
+          <div class="browser-frame">
+            <div class="browser-bar">
+              <div class="browser-dots"><span></span><span></span><span></span></div>
+            </div>
+            <div class="browser-content">
+              <video src="/video/dam_demo.mp4" controls playsinline style="width:100%; display:block;"></video>
             </div>
           </div>
         </div>

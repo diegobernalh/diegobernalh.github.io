@@ -68,14 +68,28 @@ document.addEventListener("DOMContentLoaded", () => {
       wrapper.appendChild(overlay);
     });
 
+    // videos: add click overlay so controls don't intercept lightbox open
+    document.querySelectorAll(".project-img video").forEach(video => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "project-video-wrapper";
+      video.parentNode.insertBefore(wrapper, video);
+      wrapper.appendChild(video);
+
+      const overlay = document.createElement("div");
+      overlay.className = "video-click-overlay";
+      wrapper.appendChild(overlay);
+    });
+
     function getAllItems() {
-      return [...document.querySelectorAll(".project-img-wrapper img, .project-iframe-wrapper iframe")];
+      return [...document.querySelectorAll(".project-img-wrapper img, .project-iframe-wrapper iframe, .project-video-wrapper video")];
     }
 
     function openLightbox(clickedEl) {
       content.innerHTML = "";
       const isMobile = window.innerWidth <= 800;
-      const items = isMobile ? [clickedEl] : getAllItems();
+      const allItems = getAllItems();
+      const clickedIndex = allItems.indexOf(clickedEl);
+      const items = isMobile ? [clickedEl] : allItems;
       items.forEach(el => {
         if (el.tagName === "IFRAME") {
           const clone = document.createElement("iframe");
@@ -86,6 +100,20 @@ document.addEventListener("DOMContentLoaded", () => {
           const rect = el.getBoundingClientRect();
           if (rect.height > 0) clone.style.aspectRatio = `${rect.width / rect.height}`;
           content.appendChild(clone);
+        } else if (el.tagName === "VIDEO") {
+          const screenWrap = el.closest('.screen-wrap');
+          if (screenWrap) {
+            const clone = screenWrap.cloneNode(true);
+            const clonedVideo = clone.querySelector("video");
+            if (clonedVideo) { clonedVideo.controls = true; clonedVideo.autoplay = false; }
+            content.appendChild(clone);
+          } else {
+            const clone = document.createElement("video");
+            clone.src = el.src;
+            clone.controls = true;
+            clone.style.width = "100%";
+            content.appendChild(clone);
+          }
         } else {
           const screenWrap = el.closest('.screen-wrap');
           if (screenWrap) {
@@ -101,6 +129,13 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       lightbox.classList.add("active");
       document.body.style.overflow = "hidden";
+      const targetIndex = isMobile ? 0 : clickedIndex;
+      if (targetIndex > 0 && content.children[targetIndex]) {
+        const target = content.children[targetIndex];
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          lightbox.scrollTop = target.offsetTop;
+        }));
+      }
     }
 
     function closeLightbox() {
@@ -115,6 +150,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".iframe-click-overlay").forEach(overlay => {
       const iframe = overlay.parentElement.querySelector("iframe");
       overlay.addEventListener("click", () => openLightbox(iframe));
+    });
+
+    document.querySelectorAll(".video-click-overlay").forEach(overlay => {
+      const video = overlay.parentElement.querySelector("video");
+      overlay.addEventListener("click", () => openLightbox(video));
     });
 
     lightbox.querySelector(".lightbox-close").addEventListener("click", closeLightbox);
