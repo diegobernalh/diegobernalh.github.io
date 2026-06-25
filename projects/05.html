@@ -54,24 +54,21 @@
             <a href="./06.html"><img src="/img/right.svg"></a>
           </div>
         </div>
-          <h3>UX/UI & App Design — SNAM / ACR <span class="chip">2020—present</span></h3>
+          <h3>UX/UI & App Design — Energy Infrastructure <span class="chip">2020—present</span></h3>
         <p class="text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Telediagnosis is a real-time monitoring and diagnostic platform for industrial turbocompressors across a national gas network. It connects 21 compression plants — 68 machines in total — collecting over 74,000 signals at one reading every three seconds: more than 1 billion IoT data points per day. The platform runs on corporate intranet, accessible from desktop and mobile, and serves operators and maintenance engineers with tools for live monitoring, historical analysis, and predictive diagnostics.
         </p>
         <p class="text">
           <strong>What it does:</strong><br>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          The platform operates across three modes. Real-time monitoring surfaces live data per plant and machine — operators can define diagnostic thresholds per signal, enabling remote condition monitoring and early anomaly detection without being on site. Historical analysis provides a custom trend builder: users compose multi-signal charts, set time ranges, and apply analysis tools to explore how machine behaviour evolves over time. A performance section renders machine performance curves and the current working point — calculated on-edge — and lets engineers modify curve parameters directly from the UI when operating conditions change. Each of the 6 machine types monitored was graphically modelled in full detail, reflecting the actual mechanical differences between machines produced by different vendors.
         </p>
         <p class="text">
-          <strong>How it works:</strong><br>
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+          <strong>Design focus:</strong><br>
+          Making 1 billion daily data points legible for operators who need to act on them. A significant part of that work was designing the visual language for all 6 machine types from scratch — following an engineering-first approach so the interface reads the way operators already read technical schematics. Each machine is represented as a live diagram: graphical components map directly to sensor states, valve positions, and alarm conditions, giving engineers a spatial mental model they can use under operational pressure. This visual language had to be built from within the platform's existing design system, keeping the machine models native to the interface rather than foreign to it. Beyond the machine models, the threshold configuration and trend generation tools required their own design logic — translating complex data configuration into interfaces that non-specialist operators could use without training.
         </p>
         <p class="text">
-          <strong>The hard part:</strong><br>
-          Sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
-        </p>
-        <p class="text">
-          <strong>Tech stack:</strong><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          <strong>The challenge:</strong><br>
+          One interface, 68 machines, 6 different mechanical architectures, and 74,000 live signals — all from different vendors, with different protocols and data structures. The first design problem was information architecture: what an operator needs at a glance versus what they dig into. The second was building a precise visual language for 6 mechanically distinct machine types while staying within the constraints of an existing design system — the models had to feel native, not imported. The third was mode-bridging: real-time and historical data live in different mental models, and the platform needed to serve both without fragmenting the experience. The fourth was evolution: the platform grew from basic monitoring into a predictive diagnostics tool across multiple phases, requiring design decisions that could expand without breaking the existing interface.
         </p>
       </div>
 
