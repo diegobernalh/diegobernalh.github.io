@@ -133,7 +133,7 @@ nav {
 .footer {
   width: 100%;
   overflow: hidden;
-  padding: var(--gap-m) 0;
+  padding: var(--gap-s) 0;
 }
 
 .loop_wrap {
