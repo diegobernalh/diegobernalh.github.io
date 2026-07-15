@@ -733,6 +733,13 @@ img.show {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.img-conteiner .browser-content img {
+  object-fit: cover;
+  object-position: top center;
+  height: 100%;
 }
 
 .browser-frame {
