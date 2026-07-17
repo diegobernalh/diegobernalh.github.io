@@ -99,6 +99,10 @@ h3 {
   letter-spacing: 0.05em;
 }
 
+.hl {
+  border-bottom: 1px solid var(--color-link);
+}
+
 a {
   color: var(--color-link);
   text-decoration: none;

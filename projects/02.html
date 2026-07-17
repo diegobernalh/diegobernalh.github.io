@@ -70,19 +70,19 @@
         </div>
           <h3>AI Barista App <span class="chip">2026—present</span></h3>
         <p class="text">
-          Every new coffee bag means re-dialing your grind from scratch — no recipe survives a roast change. I built this app to fix that: a barista companion that learns from each brew session and adjusts its recommendations over time. Built end-to-end as a solo project — concept, UX/UI, Flutter frontend, Python/FastAPI backend, SQLite, deployed on Fly.dev. Currently in active development: the backend and AI flows are complete, visual design implementation is ongoing.
+          Every new coffee bag means re-dialing your grind from scratch — no recipe survives a roast change. I built this app to fix that: a barista companion that <span class="hl">learns from each brew session and adjusts its recommendations over time</span>. Built end-to-end as a solo project — concept, UX/UI, Flutter frontend, Python/FastAPI backend, SQLite, deployed on Fly.dev. Currently in active development: the backend and AI flows are complete, visual design implementation is ongoing.
         </p>
         <p class="text">
           <strong>What it does:</strong><br>
-          The app runs Claude (Anthropic) across multiple AI flows: vision analysis to parse coffee bag metadata from photos, a recommendation engine that cross-references equipment profiles, user preferences, and historical brew data to generate method-specific recipes, and a dial-in calibration loop where you report actual brew time and taste result and the AI returns a fully adjusted recipe with corrected grind settings and temperature.
+          The app runs Claude (Anthropic) across multiple AI flows: <span class="hl">vision analysis</span> to parse coffee bag metadata from photos, a <span class="hl">recommendation engine</span> that cross-references equipment profiles, user preferences, and historical brew data to generate method-specific recipes, and a <span class="hl">dial-in calibration loop</span> where you report actual brew time and taste result and the AI returns a fully adjusted recipe with corrected grind settings and temperature.
         </p>
         <p class="text">
           <strong>How it works:</strong><br>
-          The system gets smarter over time — each saved recipe feeds back into future generations, so the AI anchors new recommendations to empirically validated parameters rather than starting from scratch. Tasting sessions, ratings, and adjustment notes are persisted in SQLite and used as context for subsequent AI calls.
+          The system <span class="hl">gets smarter over time</span> — each saved recipe feeds back into future generations, so the AI anchors new recommendations to empirically validated parameters rather than starting from scratch. Tasting sessions, ratings, and adjustment notes are persisted in SQLite and used as context for subsequent AI calls.
         </p>
         <p class="text">
           <strong>The hard part:</strong><br>
-          Designing the calibration prompt to respect brew physics — grind direction is always determined by brew time (shorter brew → finer grind → fewer clicks), while taste result adjusts temperature. Getting the AI to consistently follow that rule required iterative prompt engineering and explicit priority rules in the system prompt.
+          Designing the calibration prompt to respect <span class="hl">brew physics</span> — grind direction is always determined by brew time (shorter brew → finer grind → fewer clicks), while taste result adjusts temperature. Getting the AI to consistently follow that rule required iterative prompt engineering and explicit priority rules in the system prompt.
         </p>
         <p class="text">
           <strong>Tech stack:</strong><br>Flutter (iOS/Android), Python/FastAPI, SQLite, Claude API (Anthropic), Fly.dev
